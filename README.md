@@ -4,10 +4,10 @@
 ## Table of Contents (Optional)
 ### [Introduction](#Introduction)
 1. [Features](#Features)
-2. [Technical Architecture](#Technical_Architecture)
+2. [Technical Architecture](#Technical-Architecture)
 3. [Installation](#Installation)
 4. [Usage](#Usage)
-5. [Development Approach](#Development_Approach)
+5. [Development Approach](#Development-Approach)
 6. [Contributing](#Contributing)
 7. [License](#License)
 
@@ -48,5 +48,5 @@ The Apartment Management System (AMS) is a full-stack web application designed t
 
 ### DevOps and Automation
 - To be continue if possible ...
-
+- [Top](Introduction)
 
