@@ -2,14 +2,14 @@
 
 # Apartment Management System (AMS)
 ## Table of Contents (Optional)
-### [Introduction](#Introduction)
-1. [Features](#Features)
-2. [Technical Architecture](#Technical-Architecture)
-3. [Installation](#Installation)
-4. [Usage](#Usage)
-5. [Development Approach](#Development-Approach)
-6. [Contributing](#Contributing)
-7. [License](#License)
+1. [Introduction](#Introduction)
+2. [Features](#Features)
+3. [Technical Architecture](#Technical-Architecture)
+4. [Installation](#Installation)
+5. [Usage](#Usage)
+6. [Development Approach](#Development-Approach)
+7. [Contributing](#Contributing)
+8. [License](#License)
 
 ## Introduction
 The Apartment Management System (AMS) is a full-stack web application designed to streamline the management of residential apartment complexes. This system will provide tools for property managers, residents, and maintenance staff to efficiently handle tasks such as rent collection, maintenance requests, communication, and facility bookings. Built using Agile methodologies, the AMS will be scalable, user-friendly, and accessible across multiple devices.
@@ -48,6 +48,16 @@ The Apartment Management System (AMS) is a full-stack web application designed t
 
 ### DevOps and Automation
 - To be continue if possible ...
-  
+
+## Installation
+
+## Usage
+
+## Development Approach
+
+## Contributing
+
+## License
+
 - [Top](#C346-Project)
 
