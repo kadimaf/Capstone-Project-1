@@ -9,7 +9,6 @@
 5. [Usage](#Usage)
 6. [Development Approach](#Development-Approach)
 7. [Contributing](#Contributing)
-8. [License](#License)
 
 ## Introduction
 The Apartment Management System (AMS) is a full-stack web application designed to streamline the management of residential apartment complexes. This system will provide tools for property managers, residents, and maintenance staff to efficiently handle tasks such as rent collection, maintenance requests, communication, and facility bookings. Built using Agile methodologies, the AMS will be scalable, user-friendly, and accessible across multiple devices.
@@ -57,7 +56,6 @@ The Apartment Management System (AMS) is a full-stack web application designed t
 
 ## Contributing
 
-## License
 
 - [Top](#C346-Project)
 
