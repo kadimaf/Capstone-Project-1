@@ -156,6 +156,4 @@ This project is licensed under the **MIT License**.
 
 ---
 
--- [C346 Project](#C346 Project)
-
  ---
