@@ -1,61 +1,157 @@
 # C346 Project
 
-# Apartment Management System (AMS)
-## Table of Contents (Optional)
-1. [Introduction](#Introduction)
-2. [Features](#Features)
-3. [Technical Architecture](#Technical-Architecture)
-4. [Installation](#Installation)
-5. [Usage](#Usage)
-6. [Development Approach](#Development-Approach)
-7. [Contributing](#Contributing)
+﻿# **CACODEV - Congolese Association for Congo Development**
 
-## Introduction
-The Apartment Management System (AMS) is a full-stack web application designed to streamline the management of residential apartment complexes. This system will provide tools for property managers, residents, and maintenance staff to efficiently handle tasks such as rent collection, maintenance requests, communication, and facility bookings. Built using Agile methodologies, the AMS will be scalable, user-friendly, and accessible across multiple devices.
+*A Non-Profit Organization Management System*
 
-## Features
-### Property Management Module
-- Lease Management: Track lease agreements, renewal dates, and tenant details.
-- Rent Collection: Automate rent payments with online payment integration (e.g., Stripe, PayPal).
-- Financial Reporting: Generate reports on revenue, expenses, and outstanding payments.
+## **Overview**
+CACODEV is a comprehensive management platform designed to facilitate the operations of the Congolese Association for Congo Development. Built with **Spring Boot** (Backend) and **Angular** (Frontend), the system provides tools to manage activities, memberships, fundraisings, events, meetings, and more.
 
-### Resident Portal
-- Maintenance Requests: Allow residents to submit and track maintenance requests.
-- Rent Payment: Enable online rent payments with payment history.
-- Communication: Facilitate communication between residents and management via messaging.
-- Facility Booking: Allow residents to book common facilities (e.g., gym, party hall).
+---
 
-### Maintenance Management Module
-- Work Order Tracking: Assign and track maintenance tasks for staff.
-- Inventory Management: Track maintenance supplies and equipment.
-- Notifications: Send automated reminders and updates to residents and staff.
+## **Features & Modules**
 
-### Admin Dashboard
-- User Management: Manage roles and permissions for property managers, staff, and residents.
-- Analytics: Provide insights into occupancy rates, maintenance trends, and financial performance.
-- Settings: Configure system settings, payment gateways, and notification preferences.
+### **1. Activities**
+Manage and categorize activities within the organization.
+- Activity Domain
+- Activity Domain Category (with images)
+- Activity
+- Activity Registration
 
-## Technical Architecture
-### Frontend
-- Technologies: React.js, HTML5, CSS3, JavaScript
-- Features: Responsive design, accessibility compliance (WCAG), cross-browser compatibility.
+### **2. Billing**
+Implement **Stripe** for processing **membership contributions**.
 
-### Backend
-- Technologies: Node.js, Express.js, Django (Python)
-- Database: PostgreSQL or MongoDB for scalable data storage.
-- APIs: RESTful APIs for seamless integration with third-party services (e.g., payment gateways).
+### **3. Blogs**
+Manage blog-related content and discussions.
+- Authors
+- Blog Posts
+- Post Comments & Replies
 
-### DevOps and Automation
-- To be continue if possible ...
+### **4. Contacts**
+Centralized communication management.
+- Announcements
+- Contact Management
 
-## Installation
+### **5. Events**
+Organize and track events.
+- Event Creation
+- Event Locations
+- Event Registration
 
-## Usage
+### **6. Fundraisings**
+Monitor and manage donations.
+- Donations
+- Donor Members & Their Contributions
+- Fundraising Campaigns
 
-## Development Approach
+### **7. Identity & Access Control**
+Manage users and authentication.
+- User Accounts
+- Roles & Permissions
+- User Tokens
+- User Addresses
 
-## Contributing
+### **8. Meetings**
+Schedule and document meetings.
+- Meeting Management
+- Attendees Tracking
+- Meeting Minutes & Categories
+- Meeting Motions
 
+### **9. Memberships**
+Manage members and board roles.
+- Board Members
+- Membership Types
+- Member Contributions
+- Job Roles & Histories
 
-- [Top](#C346-Project)
+### **10. Organizations**
+Handle organizational structure.
+- General Organization Information
+- Announcements
+- Documents
+- Locations & Contacts
+- Representatives
 
+---
+
+## **Technology Stack**
+
+### **Backend**: Spring Boot
+- **Spring Security** – Authentication & Authorization
+- **Spring Data JPA** – Database Management
+- **Spring MVC** – API Development
+- **Stripe API** – Payment Processing
+- **Hibernate** – ORM
+
+### **Frontend**: Angular
+- **Angular Material** – UI Components
+- **RxJS** – Reactive Programming
+- **NgRx** – State Management
+- **Angular Forms** – Form Handling
+
+### **Database**
+- PostgreSQL / MySQL
+
+### **DevOps & Deployment**
+- **Docker** – Containerization
+- **CI/CD Pipelines** – Automated Builds & Deployment
+- **Cloud Hosting** – AWS / Azure / Google Cloud
+
+---
+
+## **Installation & Setup**
+
+### **1. Backend (Spring Boot)**
+#### Prerequisites:
+- Java 17+
+- Maven
+- PostgreSQL/MySQL
+
+#### Steps:
+```bash
+git clone https://github.com/your-repo/cacodev-backend.git
+cd cacodev-backend
+mvn clean install
+mvn spring-boot:run
+```
+#### Environment Variables:
+```env
+DB_URL=jdbc:postgresql://localhost:5432/cacodev_db
+DB_USERNAME=your_db_user
+DB_PASSWORD=your_db_password
+STRIPE_SECRET_KEY=your_stripe_secret
+JWT_SECRET=your_jwt_secret
+```
+
+---
+
+### **2. Frontend (Angular)**
+#### Prerequisites:
+- Node.js 18+
+- Angular CLI
+
+#### Steps:
+```bash
+git clone https://github.com/your-repo/cacodev-frontend.git
+cd cacodev-frontend
+npm install
+ng serve
+```
+The app should now be running at `http://localhost:4200/`.
+
+---
+
+## **Contributing**
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Commit your changes (`git commit -m "Added new feature"`)
+4. Push to the branch (`git push origin feature-branch`)
+5. Submit a Pull Request
+
+---
+
+## **License**
+This project is licensed under the **MIT License**.
+
+---
