@@ -12,10 +12,8 @@
 8. [Meetings](#Meetings)
 9. [Menmberships](#Memberships)
 10. [Organizations](#Organizations)
-  -  [Technology Stack](#Technology-Stack)
-  -  [Installation & Setup](#Installation-&-Setup)
-  -  [Contributing](#Contributing)
-  -  [License](#License)
+    
+  -  [Technology Stack](#Technology-Stack)  -  [Installation & Setup](#Installation-&-Setup)  -  [Contributing](#Contributing)  -  [License](#License)
 
 ---
 
