@@ -2,7 +2,7 @@
 
 # Table of Contents (Optional)
 ## Overview
-1. [Features & Module](#Features-&-Module)
+1. [Features & Modules](#Features-&-Modules)
 2. [Billing](#Billing)
 3. [Blogs](#Blogs)
 4. [Contacts](#Contacts)
@@ -10,7 +10,7 @@
 6. [Fundraisings](#Fundraisings)
 7. [Identity & Access Control](#Identity-&-Access-Control)
 8. [Meetings](#Meetings)
-9. [Menmberships](#Memberships)
+9. [Memberships](#Memberships)
 10. [Organizations](#Organizations)
     
   -  [Technology Stack](#Technology-Stack)
