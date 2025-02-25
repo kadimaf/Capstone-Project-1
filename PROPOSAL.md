@@ -1,24 +1,90 @@
-Here’s your proposal with a different phrase for "Technology Stack":  
+# **Proposal for CACODEV - Congolese Association for Congo Development**  
 
----
+## **1. Introduction**  
+The **Congolese Association for Congo Development (CACODEV)** is a non-profit group that helps the Congolese community grow and succeed. Running a non-profit involves managing many tasks like **membership management, organizing events, tracking donations, and staying in touch with supporters**.  
 
-# **Proposal for Apartment Management System**  
+We are suggesting a **new online platform** called the **CACODEV Management System**. This platform will make it easier to manage these tasks and improve how the organization works by bringing everything together in one place.  
 
-## **Vision Statement**  
-To create a fully integrated apartment management system that can assist property managers, tenants, and service providers in their interactions, and make property management processes more effective and less ambiguous.
-## **Project Overview**  
-The Apartment Management System is an online application which is intended to assist in the management of residential properties and make the process easier. It will act as a single entry point through which property managers can oversee rent payments, maintenance requests, and financial reports, whereas tenants will be able to pay rent, request maintenance, and download documents. Other service providers, including maintenance personnel, will also be able to receive and manage work orders. Therefore, the platform is expected to enhance the coordination between the various stakeholders, reduce the use of paper based worksheets and enhance the overall efficiency of property management functions.
-### **Features**  
-- **Simplified rent collection** by integrating with PayPal.  
-- **Monitoring and controlling of the maintenance requests.**  
-- **Real time communication** between stakeholders.  
-- **Leases and other important documents** can be found in the document organization section.  
-- **Analysis and reporting of the financials.**  
-- **Access control** based on roles for various user categories.  
+## **2. Problem**  
+Right now, CACODEV faces some issues:  
+- Things are done by hand, which takes a lot of time and effort.  
+- It’s hard to keep track of donations, events, and meetings in one spot.  
+- Communication between the board, members, and donors is not easy.  
+- It’s difficult to make sure the right people have access to the right information.  
 
-### **Technological Framework**  
-Our platform will be built using latest web technologies to develop a web application that is adaptive, protected and expandable:
-- **Front End:** React.js to offer a user-friendly interface.  
-- **Back End:** Django to ensure strong data management and execution of business logic.  
-- **Hosting:** AWS to provide reliable deployment and scalability.  
-- **Containerization:** Docker For better control of the application.
+## **3. The Solution**  
+The **CACODEV Management System** will solve these problems by:  
+- Helping you manage members, roles, and contributions.  
+- Automating billing and donation processing through **Stripe**.  
+- Making it easy to set up events, meetings, and track attendance.  
+- Providing a space to communicate with announcements, blogs, and updates.  
+- Allowing different levels of access to keep everything secure.  
+
+The platform will use modern technology to make it easy to use, secure, and ready for growth.  
+
+## **4. Features**  
+Here’s a breakdown of what the platform will offer:  
+
+### **a) Membership Management**  
+- Registering members and giving them the right roles.  
+- Keeping track of board members and their work.  
+- Managing membership types and contributions.  
+
+### **b) Fundraising & Donations**  
+- Creating and managing fundraising campaigns.  
+- Tracking donations and donor information.  
+- Secure payment processing through **Stripe**.  
+
+### **c) Events & Meetings**  
+- Organizing events and signing up attendees.  
+- Scheduling meetings and tracking attendance.  
+- Writing meeting minutes and recording decisions.  
+
+### **d) Communication**  
+- Managing blog posts and conversations.  
+- Announcing updates and news to the whole organization.  
+- Keeping contact information organized.  
+
+### **e) User Access**  
+- Safe login and sign-up system.  
+- Different access levels for members, donors, and administrators.  
+- Keeping track of user information and addresses.  
+
+### **f) Financial Tracking**  
+- Handling payments and memberships automatically.  
+- Creating financial reports and tracking income.  
+
+## **5. Technology**  
+To build this platform, we will use:  
+
+### **Backend (Spring Boot)**  
+- **Spring Security** – Keeps user accounts safe.  
+- **Spring Data JPA** – Manages the database.  
+- **Spring MVC** – Builds the website’s features.  
+- **Stripe API** – Processes payments.  
+- **Hibernate** – Connects the website to the database.  
+
+### **Frontend (Angular)**  
+- **Angular Material** – Designs the user interface.  
+- **RxJS** – Makes the platform responsive and real-time.  
+- **NgRx** – Helps with managing data on the site.  
+
+### **Database**  
+- **PostgreSQL / MySQL** – A safe and reliable way to store data.  
+
+### **Deployment & Cloud**  
+- **Docker** – Makes it easier to deploy the platform.  
+- **CI/CD Pipelines** – Automates updates and deployments.  
+- **Cloud Hosting** – Uses services like AWS, Azure, or Google Cloud to keep everything running smoothly.  
+
+## **6. Benefits**  
+Once the platform is in place, CACODEV will see:  
+- **Time saved** from automating tasks that used to be manual.  
+- **Better tracking** of donations, events, and finances.  
+- **Easier communication** between board members, donors, and the community.  
+- **More security** with different levels of access for different people.  
+
+## **7. Conclusion**  
+The **CACODEV Management System** will help make the organization run more smoothly and efficiently. It will bring together everything in one place and make managing members, donations, events, and finances much easier. By using modern technology, this system will be safe, easy to use, and ready to grow with the organization.  
+
+We believe that this project will make a big difference for **CACODEV**, helping the organization continue to thrive and expand its impact.
