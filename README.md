@@ -4,11 +4,10 @@
 
 - [Overview](#Overview)
 - [Features & Modules](#Features-&-Modules)
-  
-  -  [Technology Stack](#Technology-Stack)
-  -  [Installation & Setup](#Installation-&-Setup)
-  -  [Contributing](#Contributing)
-  -  [License](#License)
+- [Technology Stack](#Technology-Stack)
+- [Installation & Setup](#Installation-&-Setup)
+- [Contributing](#Contributing)
+- [License](#License)
 
 ---
 
