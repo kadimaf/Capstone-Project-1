@@ -1,6 +1,5 @@
 # Team Organization and Roles
 
----
 ## David Katembo
 
 Responsibilities:
