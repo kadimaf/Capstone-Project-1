@@ -4,16 +4,7 @@
 
 - [Overview](#Overview)
 - [Features & Modules](#Features-&-Modules)
-1. [Activities](#Activities)
-2. [Billing](#Billing)
-3. [Blogs](#Blogs)
-4. [Contacts](#Contacts)
-5. [Events](#Events)
-6. [Fundraisings](#Fundraisings)
-7. [Identity & Access Control](#Identity-&-Access-Control)
-8. [Meetings](#Meetings)
-9. [Memberships](#Memberships)
-10. [Organizations](#Organizations)
+  
   -  [Technology Stack](#Technology-Stack)
   -  [Installation & Setup](#Installation-&-Setup)
   -  [Contributing](#Contributing)
