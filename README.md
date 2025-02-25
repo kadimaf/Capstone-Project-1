@@ -2,11 +2,22 @@
 
 # Table of Contents (Optional)
 ## [Overview](#Overview)
-## [Features & Module](#Features-&-Module)
-## [Billing](#Billing)
-## [Blogs](#Blogs)
-## [Contacts](#Contacts)
-## [Events](#Events)
+1. [Features & Module](#Features-&-Module)
+2. [Billing](#Billing)
+3. [Blogs](#Blogs)
+4. [Contacts](#Contacts)
+5. [Events](#Events)
+6. [Fundraisings](#Fundraisings)
+7. [Identity & Access Control](#Identity-&-Access-Control)
+8. [Meetings](#Meetings)
+9. [Menmberships](#Memberships)
+10. [Organizations](#Organizations)
+    [Technology Stack](#Technology-Stack)
+    [Installation & Setup](#Installation-&-Setup)
+    [Contributing](#Contributing)
+    [License](#License)
+
+---
 
 ﻿# **CACODEV - Congolese Association for Congo Development**
 
