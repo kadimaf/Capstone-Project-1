@@ -1,7 +1,7 @@
 # C346 Project
 
 # Table of Contents (Optional)
-## [Overview](#Overview)
+## Overview
 1. [Features & Module](#Features-&-Module)
 2. [Billing](#Billing)
 3. [Blogs](#Blogs)
@@ -13,7 +13,10 @@
 9. [Menmberships](#Memberships)
 10. [Organizations](#Organizations)
     
-  -  [Technology Stack](#Technology-Stack)  -  [Installation & Setup](#Installation-&-Setup)  -  [Contributing](#Contributing)  -  [License](#License)
+  -  [Technology Stack](#Technology-Stack)
+  -  [Installation & Setup](#Installation-&-Setup)
+  -  [Contributing](#Contributing)
+  -  [License](#License)
 
 ---
 
