@@ -1,6 +1,6 @@
 # C346 Project
 
-# Table of Contents (Optional)
+## Table of Contents (Optional)
 
 - [Overview](#Overview)
 - [Features & Modules](#Features-&-Modules)
