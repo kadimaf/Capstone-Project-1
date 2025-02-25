@@ -1,7 +1,10 @@
 # C346 Project
 
 # Table of Contents (Optional)
-1. [Features & Modules](#Features-&-Modules)
+
+- [Overview](#Overview)
+- [Features & Modules](#Features-&-Modules)
+1. [Activities](#Activities)
 2. [Billing](#Billing)
 3. [Blogs](#Blogs)
 4. [Contacts](#Contacts)
