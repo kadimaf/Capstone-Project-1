@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: CACODEV API
+    version: 1.0.0
+  profiles:
+    active: local
+
+  datasource:
+    username: CacodevAppUser
+    password: Password123$
+    url: jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true
+    dbName: CacodevDB
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    generate-ddl: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+    default-model-expand-depth: 0
+  api-docs:
+    enabled: true
+
+server:
+  port: 8080
+  shutdown: graceful
+  servlet:
+    context-path: /cacodev
+
+logging:
+  level:
+    root: info
+    org.springframework.web: info
