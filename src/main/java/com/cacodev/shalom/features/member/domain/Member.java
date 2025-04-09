@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Table(name = "MEMBERS")
@@ -32,13 +34,21 @@ public class Member extends BaseEntity {
 
     private String phoneNumber;
 
+    private LocalDate dateOfBirth;
+
     @ManyToOne
     @JoinColumn(name = "member_type_id")
     private MemberType memberType;
+
+    private LocalDate membershipExpiryDate;
+
+//    private LocalDate joinDate;
 
     private Double contributionAmount;
 
     private String currency;
 
     private String contributionFrequency;
+
+    private boolean active;
 }

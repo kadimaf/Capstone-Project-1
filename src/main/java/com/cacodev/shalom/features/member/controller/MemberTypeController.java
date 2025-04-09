@@ -1,5 +1,6 @@
 package com.cacodev.shalom.features.member.controller;
 
+import com.cacodev.shalom.features.member.domain.MemberRole;
 import com.cacodev.shalom.features.member.dto.MemberTypeCreateRequest;
 import com.cacodev.shalom.features.member.dto.MemberTypeDTO;
 import com.cacodev.shalom.features.member.dto.MemberTypeUpdateRequest;
@@ -40,6 +41,11 @@ public class MemberTypeController {
     @GetMapping
     public ResponseEntity<List<MemberTypeDTO>> getAllMemberTypes() {
         return ResponseEntity.ok(memberTypeService.findAll());
+    }
+    
+    @GetMapping("/get-by-role")
+    public ResponseEntity<List<MemberTypeDTO>> getByRole(@RequestParam MemberRole role) {
+        return ResponseEntity.ok(memberTypeService.findByMemberRole(role));
     }
 
     @GetMapping("/{id}")

@@ -29,6 +29,8 @@ public class MemberType extends BaseEntity {
 
     private boolean hasVotingRights;
 
+    private MemberRole memberRole;
+
     private String privileges; // Comma-separated list of privileges
 
     @OneToMany(mappedBy = "memberType", cascade = CascadeType.ALL)

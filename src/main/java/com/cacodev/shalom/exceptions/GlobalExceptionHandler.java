@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> resourceAlreadyExistsException(ResourceAlreadyExistsException ex) {
         ErrorDTO errorDTO = ErrorDTO.builder()
                 .statusCode(HttpStatus.CONFLICT.value())
-                .error("Resource Already Exists")
+                .error("Conflict")
                 .message(ex.getMessage())
                 .build();
         return new ResponseEntity<>(errorDTO, HttpStatus.CONFLICT);

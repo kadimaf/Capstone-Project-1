@@ -2,6 +2,7 @@ package com.cacodev.shalom.features.member.service;
 
 import com.cacodev.shalom.exceptions.ResourceAlreadyExistsException;
 import com.cacodev.shalom.exceptions.ResourceNotFound;
+import com.cacodev.shalom.features.member.domain.MemberRole;
 import com.cacodev.shalom.features.member.domain.MemberType;
 import com.cacodev.shalom.features.member.dto.MemberTypeCreateRequest;
 import com.cacodev.shalom.features.member.dto.MemberTypeDTO;
@@ -96,6 +97,12 @@ public class MemberTypeService {
 
     public List<MemberTypeDTO> findAll() {
         return memberTypeRepository.findAll().stream()
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<MemberTypeDTO> findByMemberRole(MemberRole memberRole) {
+        return memberTypeRepository.findByMemberRole(memberRole).stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
