@@ -1,0 +1,41 @@
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.field-row {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.label {
+    width: 140px;
+    /* Adjust based on your label length */
+    font-weight: 500;
+    color: #555;
+}
+
+.value {
+    flex: 1;
+    font-weight: bold;
+    color: #222;
+}
