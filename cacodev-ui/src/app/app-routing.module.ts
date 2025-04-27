@@ -13,6 +13,8 @@ import { MemberDetailsComponent } from './components/member-component/member-det
 import { MemberEditComponent } from './components/member-component/member-edit/member-edit.component';
 import { MemberAddComponent } from './components/member-component/member-add/member-add.component';
 import { AddMemberTypeComponent } from './components/member-type-component/add-member-type/add-member-type.component';
+import { ContributionComponent } from './components/contributions/contribution/contribution.component';
+import { EventDetailsComponent } from './components/events/event-details/event-details.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,10 @@ const routes: Routes = [
   {
     path: 'events',
     component: EventComponent
+  },
+  {
+    path: 'events/:id',
+    component: EventDetailsComponent
   },
   {
     path: 'management',
@@ -54,6 +60,10 @@ const routes: Routes = [
   {
     path: 'management/add-member-type',
     component: AddMemberTypeComponent
+  },
+  {
+    path: 'management/contributions',
+    component: ContributionComponent
   },
   {
     path: 'management/users',

@@ -23,10 +23,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule  } from '@angular/material/sort';
+import { MatDividerModule  } from '@angular/material/divider';
+import { MatAutocompleteModule  } from '@angular/material/autocomplete';
 
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ContributionComponent } from './components/contribution/contribution.component';
+import { ContributionComponent } from './components/contributions/contribution/contribution.component';
 import { EventComponent } from './components/event/event.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ManagementComponent } from './components/management/management.component';
@@ -38,7 +42,11 @@ import { UserComponent } from './components/user/user.component';
 import { MemberDetailsComponent } from './components/member-component/member-details/member-details.component';
 import { MemberEditComponent } from './components/member-component/member-edit/member-edit.component';
 import { MemberAddComponent } from './components/member-component/member-add/member-add.component';
-import { AddMemberTypeComponent } from './components/member-type-component/add-member-type/add-member-type.component'
+import { AddMemberTypeComponent } from './components/member-type-component/add-member-type/add-member-type.component';
+import { AddContributionDialogComponent } from './components/contributions/add-contribution-dialog/add-contribution-dialog.component';
+import { AddEventDialogComponent } from './components/events/add-event-dialog/add-event-dialog.component';
+import { EventDetailsComponent } from './components/events/event-details/event-details.component';
+import { AddParticipantDialogComponent } from './components/events/add-participant-dialog/add-participant-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +66,11 @@ import { AddMemberTypeComponent } from './components/member-type-component/add-m
     MemberDetailsComponent,
     MemberEditComponent,
     MemberAddComponent,
-    AddMemberTypeComponent
+    AddMemberTypeComponent,
+    AddContributionDialogComponent,
+    AddEventDialogComponent,
+    EventDetailsComponent,
+    AddParticipantDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +91,11 @@ import { AddMemberTypeComponent } from './components/member-type-component/add-m
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTableModule,
+    MatSortModule,
+    MatDividerModule,
+    MatAutocompleteModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
