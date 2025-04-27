@@ -1,15 +1,14 @@
-package com.cacodev.shalom.features.contribution;
+package com.cacodev.shalom.features.contribution.domain;
 
 import com.cacodev.shalom.common.base.BaseEntity;
 import com.cacodev.shalom.features.member.domain.Member;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,5 +22,14 @@ public class Contribution extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    private Double amount;
 
+    private String description;
+
+    private LocalDateTime date;
+
+    private ContributionType type;
+
+    @Enumerated(EnumType.STRING)
+    private ContributionStatus status;
 }
