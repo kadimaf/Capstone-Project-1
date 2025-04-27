@@ -62,8 +62,8 @@ export class MemberService {
     return this.http.get<Member[]>(`${this.apiUrl}/find-by-email/${email}`);
   }
 
-  getMemberByMemberId(memberId: string): Observable<Member[]> {
-    return this.http.get<Member[]>(`${this.apiUrl}/find-by-member-id/${memberId}`);
+  getMemberByMemberId(memberId: string): Observable<Member> {
+    return this.http.get<Member>(`${this.apiUrl}/find-by-member-id/${memberId}`);
   }
 
   getInactiveMembers(): Observable<Member[]> {
