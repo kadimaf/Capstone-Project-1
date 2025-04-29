@@ -3,6 +3,7 @@ import { AddEventDialogComponent } from '../events/add-event-dialog/add-event-di
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
 import { Event } from '../../models/Event';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-event',
@@ -14,7 +15,11 @@ export class EventComponent {
 
   events: Event[] = [];
 
-  constructor(private eventService: EventService, private router: Router) { }
+  constructor(
+    private eventService: EventService,
+    private router: Router,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.loadEvents();
@@ -48,16 +53,15 @@ export class EventComponent {
 
 
   openAddEventDialog(): void {
-    // const dialogRef = this.dialog.open(AddEventDialogComponent, {
-    //   width: '600px'
-    // });
+    const dialogRef = this.dialog.open(AddEventDialogComponent, {
+      width: '600px'
+    });
 
-    // dialogRef.afterClosed().subscribe((newEvent: Event) => {
-    //   if (newEvent) {
-    //     this.events.push(newEvent);
-    //     this.dataSource.data = this.events;
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'refresh') {
+        this.loadEvents(); // 👈 Re-fetch events when dialog says "refresh"
+      }
+    });
   }
 
 }

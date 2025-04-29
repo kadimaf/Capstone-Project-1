@@ -6,6 +6,7 @@ import { EventStatus } from '../enums/eventStatus';
 import { EventUpdateStatusRequest } from '../models/EventUpdateStatusRequest';
 import { EventUpdateDescriptionRequest } from '../models/EventUpdateDescriptionRequest';
 import { EventAddParticipantRequest } from '../models/EventAddParticipantRequest';
+import { EventCreateRequest } from '../models/EventCreateRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class EventService implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
 
   getAllEvents(): Observable<Event[]> {
@@ -41,6 +42,14 @@ export class EventService implements OnInit {
 
   addParticipant(eventId: string, request: EventAddParticipantRequest): Observable<Event> {
     return this.http.post<Event>(`${this.apiUrl}/${eventId}/participants`, request);
+  }
+
+  createEvent(request: EventCreateRequest): Observable<Event> {
+    return this.http.post<Event>(`${this.apiUrl}`, request);
+  }
+
+  deleteEvent(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
   
 }

@@ -12,7 +12,13 @@
             <mat-icon>place</mat-icon>{{ event.location }} &nbsp;|&nbsp;
             <mat-icon>event</mat-icon>{{ event.dateTime | date:'medium' }}
         </mat-card-subtitle>
+        <mat-icon>person</mat-icon>Organizer: {{ event.memberId }}
     </mat-card-header>
+    <div class="float-right">
+        <button mat-raised-button class="red-color" (click)="confirmDelete()">
+            <mat-icon>delete</mat-icon> Delete Event
+        </button>
+    </div>
 
     <mat-card-content>
         <!-- Description -->
