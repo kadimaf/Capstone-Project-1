@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../../../models/Event';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../services/event.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventStatus } from '../../../enums/eventStatus';
@@ -30,7 +30,8 @@ export class EventDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private eventService: EventService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -148,4 +149,29 @@ export class EventDetailsComponent implements OnInit {
         return 'info';
     }
   }
+
+  confirmDelete(): void {
+    const confirmDialog = confirm('Are you sure you want to delete this event?');
+  
+    if (confirmDialog) {
+      this.eventService.deleteEvent(this.event.id).subscribe({
+        next: () => {
+          this.snackBar.open('Event deleted successfully!', 'Close', {
+            duration: 7000,
+            verticalPosition: 'top',
+            panelClass: 'snackbar-success'
+          });
+          this.router.navigate(['/events']); // Navigate back to events list
+        },
+        error: () => {
+          this.snackBar.open('Failed to delete event', 'Close', {
+            duration: 7000,
+            verticalPosition: 'top',
+            panelClass: 'snackbar-error'
+          });
+        }
+      });
+    }
+  }
+  
 }
