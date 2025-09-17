@@ -166,5 +166,5 @@ The app should now be running at `http://localhost:4200/`.
 This project is licensed under the **MIT License**.
 
 ---
-- [C346 Project](#C346-Project)
+- [P445 Project](#P445-Project)
  ---
