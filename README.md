@@ -162,6 +162,13 @@ The app should now be running at `http://localhost:4200/`.
 
 ---
 
+## **Group Shalom**
+1. David Katembo
+2. Fabrice Kadima
+3. Pemphyle Nzuzi
+
+---
+
 ## **License**
 This project is licensed under the **MIT License**.
 
