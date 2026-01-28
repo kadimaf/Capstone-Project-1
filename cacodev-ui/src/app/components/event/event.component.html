@@ -1,0 +1,43 @@
+<!-- Hero Section -->
+<section class="events-hero">
+    <h1>📢 Events</h1>
+    <p>Discover upcoming and past events organized by our community.</p>
+</section>
+
+<!-- Header Actions -->
+<div class="container events-header">
+    <h2>📅 Upcoming & Past Events</h2>
+    <button mat-flat-button color="primary" (click)="openAddEventDialog()">
+        <mat-icon>add</mat-icon>&nbsp; Add Event
+    </button>
+</div>
+<hr>
+
+<!-- Event Cards -->
+<div class="container events-container">
+    <div class="event-cards">
+        <mat-card *ngFor="let event of events" class="event-card" (click)="viewDetails(event.id)">
+            <mat-card-header>
+                <mat-card-title><strong>{{ event.title }}</strong></mat-card-title>
+                <mat-card-subtitle>
+                    <mat-icon class="icon-text">place</mat-icon> {{ event.location }} <br>
+                    <mat-icon class="icon-text">schedule</mat-icon> {{ event.dateTime | date:'medium' }}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <br>
+                <p class="description">{{ event.description }}</p>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+
+            <mat-card-footer class="status-footer">
+                <mat-icon class="status-icon" [ngClass]="event.status.toLowerCase()">
+                    {{ getStatusIcon(event.status) }}
+                </mat-icon>
+                <span class="status-badge" [ngClass]="event.status.toLowerCase()">
+                    {{ event.status }}
+                </span>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>

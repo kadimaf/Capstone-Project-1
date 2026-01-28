@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Add Participant</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Select Member</mat-label>
+        <mat-select [(value)]="selectedMemberId">
+          <mat-option *ngFor="let member of members" [value]="member.id">
+            {{ member.firstName }} {{ member.lastName }} ({{ member.memberId }})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="onSubmit()">Add</button>
+</mat-dialog-actions>

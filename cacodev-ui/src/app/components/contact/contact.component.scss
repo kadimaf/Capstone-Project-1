@@ -1,0 +1,45 @@
+.contact-hero {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 20px;
+}
+
+.contact-form-card,
+.contact-info-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-info-card .info-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+mat-icon {
+    font-size: 28px;
+    color: #3f51b5;
+}

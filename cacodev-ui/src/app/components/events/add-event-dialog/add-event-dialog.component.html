@@ -1,0 +1,58 @@
+<h2 mat-dialog-title class="dialog-title">
+    <mat-icon>event</mat-icon> Create New Event
+</h2>
+
+<mat-dialog-content [formGroup]="eventForm" class="dialog-content">
+
+    <!-- Organizer Dropdown -->
+    <br>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Organizer</mat-label>
+        <mat-select formControlName="organizerId">
+            <mat-option *ngFor="let member of members" [value]="member.id">
+                {{ member.firstName }} {{ member.lastName }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- Title -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" placeholder="Enter event title">
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Enter event description" rows="4"></textarea>
+    </mat-form-field>
+
+    <!-- Date and Time -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Time</mat-label>
+        <input matInput type="time" formControlName="time" placeholder="Choose time">
+      </mat-form-field>
+
+    <!-- Location -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <mat-icon matPrefix>location_on</mat-icon>
+        <input matInput formControlName="location" placeholder="Enter location">
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button mat-dialog-close color="warn">
+        <mat-icon>cancel</mat-icon> Cancel
+    </button>
+    <button mat-flat-button color="primary" (click)="submit()" [disabled]="eventForm.invalid">
+        <mat-icon>check_circle</mat-icon> Create
+    </button>
+</mat-dialog-actions>
