@@ -1,0 +1,72 @@
+<!-- Hero Section -->
+<section class="events-hero">
+    <h1>📢 Event Details</h1>
+    <p>Get more details about an event.</p>
+</section>
+
+<div class="content">
+<mat-card class="event-details-card" *ngIf="!loading && event">
+    <mat-card-header>
+        <mat-card-title class="card-title"><strong>{{ event.title | uppercase }}</strong></mat-card-title>
+        <mat-card-subtitle class="icon-text">
+            <mat-icon>place</mat-icon>{{ event.location }} &nbsp;|&nbsp;
+            <mat-icon>event</mat-icon>{{ event.dateTime | date:'medium' }}
+        </mat-card-subtitle>
+        <mat-icon>person</mat-icon>Organizer: {{ event.memberId }}
+    </mat-card-header>
+    <div class="float-right">
+        <button mat-raised-button class="red-color" (click)="confirmDelete()">
+            <mat-icon>delete</mat-icon> Delete Event
+        </button>
+    </div>
+
+    <mat-card-content>
+        <!-- Description -->
+        <br>
+        <h4>Description</h4>
+        <mat-form-field appearance="outline" class="full-width">
+            <textarea matInput [(ngModel)]="description" rows="4"></textarea>
+        </mat-form-field>
+        <button mat-stroked-button color="primary" (click)="updateDescription()">
+            <mat-icon>edit</mat-icon> Update Description
+        </button>
+        <br>
+
+        <!-- Status -->
+        <br>
+        <h4>Status</h4>
+        <mat-form-field appearance="outline" class="small-width">
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="selectedStatus">
+                <mat-option *ngFor="let s of contributionStatuses" [value]="s">{{ s }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-stroked-button color="accent" (click)="updateStatus()">
+            <mat-icon>autorenew</mat-icon> Update Status
+        </button>
+
+        <!-- Participants -->
+        <br>
+        <h4>Participants</h4>
+        <ul>
+            <li *ngFor="let p of event.participants">
+                {{ p.firstName }} {{ p.middleName }} {{ p.lastName }} ({{ p.memberId }})
+            </li>
+        </ul>
+
+        <button mat-stroked-button color="accent" (click)="openAddParticipantDialog()">
+            <mat-icon>group_add</mat-icon> Add Participant
+        </button>
+
+        <!-- Comments -->
+        <br> <br>
+        <h4>Comments</h4>
+        <mat-form-field appearance="outline" class="full-width">
+            <textarea matInput [(ngModel)]="comments" rows="3"></textarea>
+        </mat-form-field>
+        <button mat-stroked-button color="accent" (click)="updateStatus()">
+            <mat-icon>save</mat-icon> Update Comments
+        </button>
+    </mat-card-content>
+</mat-card>
+</div>

@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    padding-bottom: 80px;
+    padding-top: 30px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-container {
+    padding: 20px;
+    padding-bottom: 80px;
+}
+
+.blue-color {
+    color: #3B71CA !important;
+}
+
+.red-color {
+    color: #CC0000 !important;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.float-right {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.float-left {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+.card-container {
+    padding: 18px;
+}
+
+::ng-deep .mat-snack-bar-container {
+    margin-bottom: 80px !important; // Adjust based on your footer height
+    z-index: 9999; // Make sure it's above everything
+}
+
+.mat-mdc-snack-bar-container {
+    &.snackbar-success {
+        --mdc-snackbar-container-color: #43a047;
+        // --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+        padding-top: 55px;
+    }
+}
+
+.mat-mdc-snack-bar-container {
+    &.snackbar-error {
+        --mdc-snackbar-container-color: #CC0000;
+        // --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+        padding-top: 55px;
+    }
+}
+
+.mat-snack-bar-container {
+    z-index: 9999 !important;
+    /* Or higher than your navbar */
+}

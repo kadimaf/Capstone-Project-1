@@ -1,0 +1,38 @@
+<section class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p>Get insights into your organization's impact</p>
+</section>
+
+<div class="dashboard-cards">
+    <mat-card class="stat-card">
+        <mat-icon>groups</mat-icon>
+        <div>
+            <h3>Total Members</h3>
+            <p>{{ totalMembers }}</p>
+        </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+        <mat-icon color="primary">check_circle</mat-icon>
+        <div>
+            <h3>Active Members</h3>
+            <p>{{ activeMembers }}</p>
+        </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+        <mat-icon color="warn">highlight_off</mat-icon>
+        <div>
+            <h3>Inactive Members</h3>
+            <p>{{ inactiveMembers }}</p>
+        </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+        <mat-icon color="accent">event</mat-icon>
+        <div>
+            <h3>Upcoming Activities</h3>
+            <p>{{ upcomingActivities }}</p>
+        </div>
+    </mat-card>
+</div>

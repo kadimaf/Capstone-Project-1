@@ -1,0 +1,86 @@
+<section class="contribution-hero">
+    <h1>All Contributions</h1>
+    <p>Overview of all contributions</p>
+</section>
+
+<div class="section-container">
+    <mat-card class="contribution-table-card">
+        <div class="table-header">
+            <h2>Contributions</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (input)="applyFilter($event)" placeholder="Filter by ID, amount, type, status, or date column" />
+            </mat-form-field>
+        </div>
+
+        <div class="contribution-actions">
+            <button mat-raised-button color="primary" (click)="openAddContributionDialog()">
+                <mat-icon>add</mat-icon> New Contribution
+            </button>
+        </div>
+
+        <mat-spinner diameter="20" *ngIf="loading"></mat-spinner>
+        
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+
+            <ng-container matColumnDef="memberId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Member ID</th>
+                <td mat-cell *matCellDef="let element">{{ element.memberId }}</td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let element">{{ getMemberFullName(element.memberId) }}</td>
+            </ng-container> -->
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let element">
+                <ng-container *ngIf="memberNameMap.has(element.memberId); else loading">
+                    {{ memberNameMap.get(element.memberId) }}
+                </ng-container>
+                <ng-template #loading>
+                    <mat-progress-spinner
+                    diameter="20"
+                    mode="indeterminate"
+                    strokeWidth="3"
+                    color="primary"
+                    style="vertical-align: middle;"
+                    ></mat-progress-spinner>
+                </ng-template>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                <td mat-cell *matCellDef="let element">${{ element.amount }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                <td mat-cell *matCellDef="let contribution">
+                    <mat-form-field appearance="outline" class="status-dropdown">
+                        <mat-select [value]="contribution.status"
+                            (selectionChange)="onStatusChange(contribution.id, $event.value)" disableRipple>
+                            <mat-option *ngFor="let status of contributionStatuses" [value]="status">
+                                {{ status }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card>
+</div>
