@@ -15,6 +15,9 @@ import { MemberAddComponent } from './components/member-component/member-add/mem
 import { AddMemberTypeComponent } from './components/member-type-component/add-member-type/add-member-type.component';
 import { ContributionComponent } from './components/contributions/contribution/contribution.component';
 import { EventDetailsComponent } from './components/events/event-details/event-details.component';
+import { DonateComponent } from './components/donate/donate.component';
+import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
+import { PaymentCancelComponent } from './components/payment/payment-cancel/payment-cancel.component';
 
 const routes: Routes = [
   {
@@ -76,6 +79,18 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'donate',
+    component: DonateComponent
+  },
+  {
+    path: 'payment/success',
+    component: PaymentSuccessComponent
+  },
+  {
+    path: 'payment/cancel',
+    component: PaymentCancelComponent
   },
 ];
 
