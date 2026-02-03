@@ -10,3 +10,28 @@ mat-form-field {
     outline: none;
     font-size: 14px;
 }
+
+.amount-row {
+    display: flex;
+    gap: 1rem;
+
+    .amount-field {
+        flex: 2;
+    }
+
+    .currency-field {
+        flex: 1;
+    }
+}
+
+.button-spinner {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+button mat-icon {
+    margin-right: 4px;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+}

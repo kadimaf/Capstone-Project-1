@@ -51,4 +51,7 @@ public class Member extends BaseEntity {
     private String contributionFrequency;
 
     private boolean active;
+
+    @Column(name = "stripe_customer_id")
+    private String stripeCustomerId;
 }

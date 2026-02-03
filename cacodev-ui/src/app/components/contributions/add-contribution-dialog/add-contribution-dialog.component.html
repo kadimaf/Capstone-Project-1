@@ -26,10 +26,21 @@
     </mat-form-field>
 
 
-    <mat-form-field appearance="fill">
-        <mat-label>Amount</mat-label>
-        <input matInput type="number" formControlName="amount" required />
-    </mat-form-field>
+    <div class="amount-row">
+        <mat-form-field appearance="fill" class="amount-field">
+            <mat-label>Amount</mat-label>
+            <input matInput type="number" formControlName="amount" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="currency-field">
+            <mat-label>Currency</mat-label>
+            <mat-select formControlName="currency">
+                <mat-option value="USD">USD</mat-option>
+                <mat-option value="EUR">EUR</mat-option>
+                <mat-option value="GBP">GBP</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
 
     <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
@@ -45,6 +56,10 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close (click)="onCancel()">Cancel</button>
-    <button mat-flat-button color="primary" (click)="submit()" [disabled]="contributionForm.invalid">Save</button>
+    <button mat-button mat-dialog-close (click)="onCancel()" [disabled]="loading">Cancel</button>
+    <button mat-flat-button color="primary" (click)="submit()" [disabled]="contributionForm.invalid || loading">
+        <mat-spinner *ngIf="loading" diameter="18" class="button-spinner"></mat-spinner>
+        <mat-icon *ngIf="!loading">payment</mat-icon>
+        {{ loading ? 'Processing...' : 'Pay Now' }}
+    </button>
 </mat-dialog-actions>

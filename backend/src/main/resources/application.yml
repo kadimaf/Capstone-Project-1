@@ -37,3 +37,13 @@ logging:
   level:
     root: info
     org.springframework.web: info
+
+# Stripe Configuration
+# IMPORTANT: Set these environment variables before running:
+# - STRIPE_SECRET_KEY: Your Stripe secret key (sk_test_... or sk_live_...)
+# - STRIPE_WEBHOOK_SECRET: Your Stripe webhook signing secret (whsec_...)
+stripe:
+  api-key: ${STRIPE_SECRET_KEY:replace-with-your-key}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
+  success-url: http://localhost:4200/payment/success?session_id={CHECKOUT_SESSION_ID}
+  cancel-url: http://localhost:4200/payment/cancel

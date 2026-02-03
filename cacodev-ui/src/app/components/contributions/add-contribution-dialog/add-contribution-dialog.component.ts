@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ContributionService } from '../../../services/contribution.service';
 import { MemberService } from '../../../services/member.service';
+import { PaymentService, ContributionCheckoutRequest } from '../../../services/payment.service';
 import { Member } from '../../../models/Member';
 import { ContributionType } from '../../../enums/contributionType';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,6 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddContributionDialogComponent implements OnInit {
   contributionForm: FormGroup;
   ContributionType = Object.values(ContributionType);
+  loading = false;
 
   members: Member[] = [];
   filteredMembers: Member[] = [];
@@ -26,13 +28,15 @@ export class AddContributionDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<AddContributionDialogComponent>,
     private contributionService: ContributionService,
     private memberService: MemberService,
+    private paymentService: PaymentService,
     private snackBar: MatSnackBar
   ) {
     this.contributionForm = this.fb.group({
       memberId: ['', Validators.required],
-      amount: [null, Validators.required],
+      amount: [null, [Validators.required, Validators.min(1)]],
       description: [''],
-      type: ['DONATION', Validators.required]
+      type: ['DONATION', Validators.required],
+      currency: ['USD', Validators.required]
     });
   }
 
@@ -66,28 +70,36 @@ export class AddContributionDialogComponent implements OnInit {
   }
 
   submit(): void {
-    const memberId = this.contributionForm.get('memberId')?.value;
-    if (this.contributionForm.valid) {
-      const contribution = this.contributionForm.value;
-      this.contributionService.createContribution(memberId, contribution).subscribe({
-        next: () => {
-          this.snackBar.open('Contribution added successfully!', 'Close', {
-            duration: 7000, 
-            verticalPosition: 'top', 
-            panelClass: ['snackbar-success']
-          });
-          this.dialogRef.close('success');
-        },
-        error: err => {
-          console.error('Error saving contribution:', err);
-          this.snackBar.open('Error trying to make contribution', 'Close', {
-            duration: 7000, 
-            verticalPosition: 'top', 
-            panelClass: ['snackbar-error']
-          });
-        }
-      });
+    if (this.contributionForm.invalid) {
+      return;
     }
+
+    this.loading = true;
+    const formValue = this.contributionForm.value;
+
+    // Create a Stripe checkout session for the contribution
+    const request: ContributionCheckoutRequest = {
+      memberId: formValue.memberId,
+      amount: formValue.amount,
+      currency: formValue.currency,
+      description: formValue.description || `${formValue.type} Contribution`
+    };
+
+    this.paymentService.createContributionCheckout(request).subscribe({
+      next: (response) => {
+        // Redirect to Stripe Checkout
+        this.paymentService.redirectToCheckout(response.checkoutUrl);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Error creating checkout session:', err);
+        this.snackBar.open('Failed to initiate payment. Please try again.', 'Close', {
+          duration: 7000,
+          verticalPosition: 'top',
+          panelClass: ['snackbar-error']
+        });
+      }
+    });
   }
 
   onCancel(): void {

@@ -47,6 +47,9 @@ import { AddContributionDialogComponent } from './components/contributions/add-c
 import { AddEventDialogComponent } from './components/events/add-event-dialog/add-event-dialog.component';
 import { EventDetailsComponent } from './components/events/event-details/event-details.component';
 import { AddParticipantDialogComponent } from './components/events/add-participant-dialog/add-participant-dialog.component';
+import { DonateComponent } from './components/donate/donate.component';
+import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
+import { PaymentCancelComponent } from './components/payment/payment-cancel/payment-cancel.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,10 @@ import { AddParticipantDialogComponent } from './components/events/add-participa
     AddContributionDialogComponent,
     AddEventDialogComponent,
     EventDetailsComponent,
-    AddParticipantDialogComponent
+    AddParticipantDialogComponent,
+    DonateComponent,
+    PaymentSuccessComponent,
+    PaymentCancelComponent
   ],
   imports: [
     BrowserModule,
