@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ContributionRepository extends JpaRepository<Contribution, UUID> {
+public interface  ContributionRepository extends JpaRepository<Contribution, UUID> {
     List<Contribution> findByMemberId(UUID memberId);
 }

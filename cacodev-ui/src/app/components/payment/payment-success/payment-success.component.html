@@ -1,0 +1,22 @@
+<div class="payment-result-container">
+  <mat-card class="result-card success">
+    <mat-card-content class="result-content">
+      <div class="icon-wrapper success">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+      <h2>Payment Successful!</h2>
+      <p class="message">Thank you for your generous donation. Your support makes a difference.</p>
+      <p class="session-info" *ngIf="sessionId">
+        Reference: {{ sessionId.substring(0, 20) }}...
+      </p>
+      <div class="actions">
+        <button mat-raised-button color="primary" routerLink="/">
+          Return to Home
+        </button>
+        <button mat-stroked-button routerLink="/donate">
+          Make Another Donation
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
