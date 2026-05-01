@@ -1,0 +1,127 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="assets/images/cacodevlogo.jpg" alt="CACODEV Logo" class="login-logo">
+      <h2>{{ isRegisterMode ? 'Create Account' : 'Welcome Back' }}</h2>
+      <p class="login-subtitle">{{ isRegisterMode ? 'Register for CACODEV Management' : 'Sign in to CACODEV Management' }}</p>
+    </div>
+
+    <!-- Login Form -->
+    <form *ngIf="!isRegisterMode" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Enter your username"
+               autocomplete="username">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('username')?.hasError('minlength')">
+          Minimum 3 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password"
+               [type]="hidePassword ? 'password' : 'text'"
+               placeholder="Enter your password" autocomplete="current-password">
+        <mat-icon matPrefix>lock</mat-icon>
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Minimum 6 characters
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button class="login-button" type="submit"
+              [disabled]="loginForm.invalid || isLoading">
+        <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
+        <span *ngIf="!isLoading">SIGN IN</span>
+      </button>
+    </form>
+
+    <!-- Register Form -->
+    <form *ngIf="isRegisterMode" [formGroup]="registerForm" (ngSubmit)="onRegister()" class="login-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Member ID</mat-label>
+        <input matInput formControlName="memberId" placeholder="Enter your member ID">
+        <mat-icon matPrefix>badge</mat-icon>
+        <mat-error *ngIf="registerForm.get('memberId')?.hasError('required')">
+          Member ID is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Choose a username"
+               autocomplete="username">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('username')?.hasError('minlength')">
+          Minimum 3 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Enter your email"
+               autocomplete="email" type="email">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+          Enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password"
+               [type]="hideRegPassword ? 'password' : 'text'"
+               placeholder="Create a password" autocomplete="new-password">
+        <mat-icon matPrefix>lock</mat-icon>
+        <button mat-icon-button matSuffix (click)="hideRegPassword = !hideRegPassword" type="button">
+          <mat-icon>{{ hideRegPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+          Minimum 6 characters
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button class="login-button register" type="submit"
+              [disabled]="registerForm.invalid || isLoading">
+        <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
+        <span *ngIf="!isLoading">CREATE ACCOUNT</span>
+      </button>
+    </form>
+
+    <div class="toggle-mode">
+      <span *ngIf="!isRegisterMode">
+        Don't have an account?
+        <a (click)="toggleMode()" class="toggle-link">Register</a>
+      </span>
+      <span *ngIf="isRegisterMode">
+        Already have an account?
+        <a (click)="toggleMode()" class="toggle-link">Sign In</a>
+      </span>
+    </div>
+
+    <div class="login-footer">
+      <a mat-stroked-button routerLink="/" class="home-btn">
+        <mat-icon>home</mat-icon> Return to Home
+      </a>
+      <p>Congolese Association for Congo Development</p>
+    </div>
+  </div>
+</div>

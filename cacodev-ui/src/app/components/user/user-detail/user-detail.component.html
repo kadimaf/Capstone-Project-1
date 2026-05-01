@@ -1,0 +1,106 @@
+<section class="user-detail-header">
+    <h1>User Details</h1>
+    <p>View and manage user account information</p>
+</section>
+
+<div class="detail-container">
+    <button mat-button color="primary" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> Back to Users
+    </button>
+
+    <!-- Loading -->
+    <div class="loading-container" *ngIf="loading">
+        <mat-spinner diameter="48"></mat-spinner>
+    </div>
+
+    <!-- Content -->
+    <ng-container *ngIf="!loading && user">
+        <mat-card class="user-card">
+            <!-- Header -->
+            <div class="user-card-header">
+                <div class="avatar">
+                    <mat-icon>account_circle</mat-icon>
+                </div>
+                <div class="header-info">
+                    <h2>{{ user.username }}</h2>
+                    <p>{{ user.email }}</p>
+                </div>
+                <div class="header-actions">
+                    <span class="role-badge" [ngClass]="user.role.toLowerCase()">{{ user.role }}</span>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <!-- Details -->
+            <div class="user-info-grid">
+                <div class="info-row">
+                    <div class="info-label">
+                        <mat-icon>badge</mat-icon> User ID
+                    </div>
+                    <div class="info-value">{{ user.id }}</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        <mat-icon>person</mat-icon> Username
+                    </div>
+                    <div class="info-value">{{ user.username }}</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        <mat-icon>email</mat-icon> Email
+                    </div>
+                    <div class="info-value">{{ user.email }}</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        <mat-icon>security</mat-icon> Role
+                    </div>
+                    <div class="info-value">
+                        <span class="role-badge" [ngClass]="user.role.toLowerCase()">{{ user.role }}</span>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        <mat-icon>credit_card</mat-icon> Member #
+                    </div>
+                    <div class="info-value">{{ user.memberNumber || '—' }}</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        <mat-icon>calendar_today</mat-icon> Created
+                    </div>
+                    <div class="info-value">{{ user.createdAt | date:'medium' }}</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        <mat-icon>toggle_on</mat-icon> Status
+                    </div>
+                    <div class="info-value">
+                        <mat-slide-toggle
+                            [checked]="user.enabled"
+                            [disabled]="isToggling"
+                            (change)="toggleEnable()">
+                            <span [class]="user.enabled ? 'status-active' : 'status-disabled'">
+                                {{ user.enabled ? 'Active' : 'Disabled' }}
+                            </span>
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </ng-container>
+
+    <!-- Not found -->
+    <div class="not-found" *ngIf="!loading && !user">
+        <mat-icon>person_off</mat-icon>
+        <p>User not found</p>
+        <button mat-flat-button color="primary" (click)="goBack()">Back to Users</button>
+    </div>
+</div>
