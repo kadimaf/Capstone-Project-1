@@ -9,6 +9,7 @@ import com.cacodev.shalom.features.member.dto.MemberTypeDTO;
 import com.cacodev.shalom.features.member.dto.MemberTypeUpdateRequest;
 import com.cacodev.shalom.features.member.mapper.MemberTypeMapper;
 import com.cacodev.shalom.features.member.repository.MemberTypeRepository;
+import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class MemberTypeService {
         this.mapper = mapper;
     }
 
+    @Tool(name = "createMemberType", description = "Create a new member type. The member type will be created as inactive by default.")
     public MemberTypeDTO create(MemberTypeCreateRequest request) {
         MemberType memberType = mapper.toEntity(request);
 
@@ -48,6 +50,7 @@ public class MemberTypeService {
         return mapper.toDTO(createdType);
     }
 
+    @Tool(name = "updateMemberType", description = "Update an existing member type. Only the fields that are different from the current values will be updated.")
     public MemberTypeDTO update(UUID id, MemberTypeUpdateRequest request) {
         boolean isFieldUpdated = false;
 
@@ -80,6 +83,7 @@ public class MemberTypeService {
         return mapper.toDTO(memberType);
     }
 
+    @Tool(name = "updateMemberTypeDescription", description = "Update the description of an existing member type.")
     public MemberTypeDTO updateDescription(UUID id, String description) {
         MemberType memberType = getMemberType(id);
 
@@ -95,18 +99,21 @@ public class MemberTypeService {
         return mapper.toDTO(memberType);
     }
 
+    @Tool(name = "findAllMemberTypes", description = "Get a list of all member types in the system.")
     public List<MemberTypeDTO> findAll() {
         return memberTypeRepository.findAll().stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
 
+    @Tool(name = "findMemberTypeByMemberRole", description = "Get a list of member types that belong to a specific member role.")
     public List<MemberTypeDTO> findByMemberRole(MemberRole memberRole) {
         return memberTypeRepository.findByMemberRole(memberRole).stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
 
+    @Tool(name = "findMemberTypeById", description = "Get a member type by its ID number.")
     public MemberTypeDTO findById(UUID id) {
         return memberTypeRepository.findById(id)
                 .map(mapper::toDTO)
@@ -115,6 +122,7 @@ public class MemberTypeService {
                 );
     }
 
+    @Tool(name = "findMemberTypeByName", description = "Get a member type by its name.")
     public MemberTypeDTO findByName(String name) {
         String typeName = name.toUpperCase();
 
@@ -125,6 +133,7 @@ public class MemberTypeService {
                 );
     }
 
+    @Tool(name = "enableDisableMemberType", description = "Enable or disable a member type. If the member type is currently active, it will be disabled. If it is currently inactive, it will be enabled.")
     public MemberTypeDTO enableDisableMemberType(UUID id) {
         MemberType memberType = getMemberType(id);
 
@@ -135,6 +144,7 @@ public class MemberTypeService {
         return mapper.toDTO(memberType);
     }
 
+    @Tool(name = "deleteMemberTypeById", description = "Delete a member type by its ID number.")
     public void deleteById(UUID id) {
         if (!memberTypeRepository.existsById(id)) {
             throw new ResourceNotFound(

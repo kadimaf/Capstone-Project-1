@@ -1,38 +1,151 @@
 <section class="dashboard-header">
-    <h1>Dashboard</h1>
-    <p>Get insights into your organization's impact</p>
+    <div class="header-content">
+        <h1>Welcome back, {{ userName }}</h1>
+        <p>Here's what's happening in your organization</p>
+    </div>
 </section>
 
-<div class="dashboard-cards">
-    <mat-card class="stat-card">
-        <mat-icon>groups</mat-icon>
-        <div>
-            <h3>Total Members</h3>
-            <p>{{ totalMembers }}</p>
-        </div>
-    </mat-card>
+<!-- Loading -->
+<div class="loading-wrapper" *ngIf="isLoading">
+    <mat-spinner diameter="48"></mat-spinner>
+</div>
 
-    <mat-card class="stat-card">
-        <mat-icon color="primary">check_circle</mat-icon>
-        <div>
-            <h3>Active Members</h3>
-            <p>{{ activeMembers }}</p>
+<div class="dashboard-content" *ngIf="!isLoading">
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+        <div class="kpi-card" (click)="navigateTo('/management/members')">
+            <div class="kpi-icon members">
+                <mat-icon>groups</mat-icon>
+            </div>
+            <div class="kpi-info">
+                <span class="kpi-value">{{ totalMembers }}</span>
+                <span class="kpi-label">Total Members</span>
+            </div>
         </div>
-    </mat-card>
 
-    <mat-card class="stat-card">
-        <mat-icon color="warn">highlight_off</mat-icon>
-        <div>
-            <h3>Inactive Members</h3>
-            <p>{{ inactiveMembers }}</p>
+        <div class="kpi-card" (click)="navigateTo('/management/members')">
+            <div class="kpi-icon active">
+                <mat-icon>check_circle</mat-icon>
+            </div>
+            <div class="kpi-info">
+                <span class="kpi-value">{{ activeMembers }}</span>
+                <span class="kpi-label">Active Members</span>
+            </div>
         </div>
-    </mat-card>
 
-    <mat-card class="stat-card">
-        <mat-icon color="accent">event</mat-icon>
-        <div>
-            <h3>Upcoming Activities</h3>
-            <p>{{ upcomingActivities }}</p>
+        <div class="kpi-card" (click)="navigateTo('/management/contributions')">
+            <div class="kpi-icon contributions">
+                <mat-icon>payments</mat-icon>
+            </div>
+            <div class="kpi-info">
+                <span class="kpi-value">{{ totalContributionAmount | currency:'USD':'symbol':'1.0-0' }}</span>
+                <span class="kpi-label">Total Contributions</span>
+            </div>
         </div>
-    </mat-card>
+
+        <div class="kpi-card" (click)="navigateTo('/events')">
+            <div class="kpi-icon events">
+                <mat-icon>event</mat-icon>
+            </div>
+            <div class="kpi-info">
+                <span class="kpi-value">{{ upcomingEventsCount }}</span>
+                <span class="kpi-label">Upcoming Events</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main grid: tables side by side -->
+    <div class="dashboard-grid">
+        <!-- Recent Contributions -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3><mat-icon>receipt_long</mat-icon> Recent Contributions</h3>
+                <button mat-button color="primary" (click)="navigateTo('/management/contributions')">
+                    View All <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </div>
+            <table mat-table [dataSource]="recentContributions" class="panel-table">
+                <ng-container matColumnDef="member">
+                    <th mat-header-cell *matHeaderCellDef>Member</th>
+                    <td mat-cell *matCellDef="let c">{{ getMemberName(c.memberId) }}</td>
+                </ng-container>
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef>Amount</th>
+                    <td mat-cell *matCellDef="let c">
+                        <strong class="amount-text">{{ c.amount | currency:'USD' }}</strong>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef>Type</th>
+                    <td mat-cell *matCellDef="let c">
+                        <span class="type-chip">{{ c.type }}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let c">{{ c.date | date:'mediumDate' }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="['member', 'amount', 'type', 'date']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['member', 'amount', 'type', 'date'];"></tr>
+            </table>
+            <div class="empty-panel" *ngIf="recentContributions.length === 0">
+                <mat-icon>receipt_long</mat-icon>
+                <p>No contributions yet</p>
+            </div>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3><mat-icon>calendar_today</mat-icon> Upcoming Events</h3>
+                <button mat-button color="primary" (click)="navigateTo('/events')">
+                    View All <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </div>
+            <div class="events-list" *ngIf="upcomingEvents.length > 0">
+                <div class="event-item" *ngFor="let event of upcomingEvents" (click)="navigateTo('/events/' + event.id)">
+                    <div class="event-date-badge">
+                        <span class="month">{{ event.dateTime | date:'MMM' }}</span>
+                        <span class="day">{{ event.dateTime | date:'dd' }}</span>
+                    </div>
+                    <div class="event-info">
+                        <span class="event-title">{{ event.title }}</span>
+                        <span class="event-meta">
+                            <mat-icon>location_on</mat-icon> {{ event.location }}
+                            <span class="event-status" [ngClass]="'status-' + event.status.toLowerCase()">
+                                {{ event.status }}
+                            </span>
+                        </span>
+                    </div>
+                    <div class="event-attendees">
+                        <mat-icon>people</mat-icon>
+                        <span>{{ event.participants.length }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-panel" *ngIf="upcomingEvents.length === 0">
+                <mat-icon>event_busy</mat-icon>
+                <p>No upcoming events</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <h3>Quick Actions</h3>
+        <div class="actions-grid">
+            <button mat-stroked-button (click)="navigateTo('/management/add-member')">
+                <mat-icon>person_add</mat-icon> Add Member
+            </button>
+            <button mat-stroked-button (click)="navigateTo('/management/contributions')">
+                <mat-icon>add_card</mat-icon> New Contribution
+            </button>
+            <button mat-stroked-button (click)="navigateTo('/events')">
+                <mat-icon>event</mat-icon> View Events
+            </button>
+            <button mat-stroked-button (click)="navigateTo('/management')">
+                <mat-icon>settings</mat-icon> Management
+            </button>
+        </div>
+    </div>
 </div>
