@@ -4,17 +4,14 @@ import com.cacodev.shalom.features.contribution.dto.ContributionCreateRequest;
 import com.cacodev.shalom.features.contribution.dto.ContributionDTO;
 import com.cacodev.shalom.features.contribution.dto.ContributionUpdateStatusRequest;
 import com.cacodev.shalom.features.contribution.service.ContributionService;
-import com.stripe.exception.StripeException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Contributions", description = "Operations about Contributions")
-@PreAuthorize("hasRole('ADMIN')")
 @RestController
 @RequestMapping("/api/contributions")
 public class ContributionController {
@@ -55,10 +52,5 @@ public class ContributionController {
         contributionService.deleteById(id);
 
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/transactions")
-    public ResponseEntity<List<?>> getAllTransactions(@RequestParam long limit) throws StripeException {
-        return ResponseEntity.ok(contributionService.listAllTransactions(limit));
     }
 }

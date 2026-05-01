@@ -10,10 +10,6 @@ import com.cacodev.shalom.features.contribution.mapper.ContributionMapper;
 import com.cacodev.shalom.features.contribution.repository.ContributionRepository;
 import com.cacodev.shalom.features.member.domain.Member;
 import com.cacodev.shalom.features.member.repository.MemberRepository;
-import com.stripe.exception.StripeException;
-import com.stripe.model.BalanceTransaction;
-import com.stripe.model.BalanceTransactionCollection;
-import com.stripe.param.BalanceTransactionListParams;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -53,16 +49,6 @@ public class ContributionService {
                 .orElseThrow(() -> new ResourceNotFound(
                         String.format("Could not find contribution with ID: '%s'", id))
                 );
-    }
-
-    public List<BalanceTransaction> listAllTransactions(long limit) throws StripeException {
-        BalanceTransactionListParams params = BalanceTransactionListParams.builder()
-                .setLimit(limit)
-                .build();
-
-        BalanceTransactionCollection transactions = BalanceTransaction.list(params);
-
-        return transactions.getData();
     }
 
     @Transactional

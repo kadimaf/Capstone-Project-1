@@ -9,7 +9,6 @@ import com.cacodev.shalom.features.event.repository.EventRepository;
 import com.cacodev.shalom.features.member.domain.Member;
 import com.cacodev.shalom.features.member.repository.MemberRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +28,6 @@ public class EventService {
         this.memberRepository = memberRepository;
     }
 
-    @Tool(description = "Find all events in the system")
     public List<EventDTO> findAllEvents() {
         return eventRepository.findAll().stream()
                 .map(eventMapper::toDTO)
@@ -55,7 +53,6 @@ public class EventService {
         return eventMapper.toDTO(eventMapper.toEntity(request));
     }
 
-    @Tool(description = "Find an event by its ID")
     public EventDTO findEventById(UUID id) {
         return eventRepository.findById(id)
                 .map(eventMapper::toDTO)

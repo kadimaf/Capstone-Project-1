@@ -17,12 +17,6 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: update
-  ai:
-    openai:
-      api-key: ${OPENAI_API_KEY:OpenAi Key_PlaceHolder}
-      chat:
-        options:
-          model: gpt-4o-mini
 
 springdoc:
   swagger-ui:
@@ -49,15 +43,7 @@ logging:
 # - STRIPE_SECRET_KEY: Your Stripe secret key (sk_test_... or sk_live_...)
 # - STRIPE_WEBHOOK_SECRET: Your Stripe webhook signing secret (whsec_...)
 stripe:
-  api-key:  ${STRIPE_SECRET_KEY:stripe Key_placeHolder}
+  api-key:  ${STRIPE_SECRET_KEY:sk_test_placeholder}
   webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
   success-url: http://localhost:4200/payment/success?session_id={CHECKOUT_SESSION_ID}
   cancel-url: http://localhost:4200/payment/cancel
-
-# JWT Configuration
-jwt:
-  secret: ${JWT_SECRET:jwt key_placeHolder}
-  access-token-expiration: 86400000   # 24 hours in milliseconds
-  refresh-token-expiration: 604800000 # 7 days in milliseconds
-
-

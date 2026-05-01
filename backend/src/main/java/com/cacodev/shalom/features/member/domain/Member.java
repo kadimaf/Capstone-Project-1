@@ -2,7 +2,6 @@ package com.cacodev.shalom.features.member.domain;
 
 import com.cacodev.shalom.common.base.BaseEntity;
 import com.cacodev.shalom.common.base.Gender;
-import com.cacodev.shalom.features.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,7 +54,4 @@ public class Member extends BaseEntity {
 
     @Column(name = "stripe_customer_id")
     private String stripeCustomerId;
-
-    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
-    private User user;
 }
