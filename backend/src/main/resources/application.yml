@@ -56,7 +56,7 @@ stripe:
 
 # JWT Configuration
 jwt:
-  secret: ${JWT_SECRET:jwt key_placeHolder}
+  secret: ${JWT_SECRET:jwt key_placeHolders}
   access-token-expiration: 86400000   # 24 hours in milliseconds
   refresh-token-expiration: 604800000 # 7 days in milliseconds
 
