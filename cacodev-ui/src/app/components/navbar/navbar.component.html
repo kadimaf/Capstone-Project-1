@@ -20,16 +20,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" *ngIf="authService.currentUser$ | async">DASHBOARD</a>
+                    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">DASHBOARD</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" routerLink="/events" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/events" routerLinkActive="active">
                         <span class="material-icons me-1">calendar_month</span>
                         EVENTS
                     </a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" routerLink="/management" routerLinkActive="active" *ngIf="authService.currentUser$ | async">MANAGEMENT</a>
+                    <a class="nav-link" routerLink="/management" routerLinkActive="active">MANAGEMENT</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/contact" routerLinkActive="active">CONTACT</a>
@@ -38,38 +38,14 @@
                     <a class="nav-link" routerLink="/about" routerLinkActive="active">ABOUT</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" routerLink="/chat" routerLinkActive="active" *ngIf="authService.currentUser$ | async">
-                        <span class="material-icons me-1">smart_toy</span>
-                        AI CHAT
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link donate-link" routerLink="/donate" routerLinkActive="active">
                         <span class="material-icons me-1">volunteer_activism</span>
                         DONATE
                     </a>
                 </li>
             </ul>
-            <div class="d-flex ms-auto align-items-center text-white gap-3">
-                <span class="d-none d-lg-inline">{{ currentDateTime | date: 'fullDate' }}</span>
-
-                <!-- Logged-in state -->
-                <ng-container *ngIf="authService.currentUser$ | async as user; else loginBtn">
-                    <span class="user-greeting">
-                        <mat-icon class="me-1">account_circle</mat-icon>
-                        {{ userName }}
-                    </span>
-                    <button mat-icon-button class="logout-btn" (click)="logout()" matTooltip="Logout">
-                        <mat-icon>logout</mat-icon>
-                    </button>
-                </ng-container>
-
-                <!-- Not logged in -->
-                <ng-template #loginBtn>
-                    <a mat-button routerLink="/login" class="login-link">
-                        <mat-icon class="me-1">login</mat-icon> LOGIN
-                    </a>
-                </ng-template>
+            <div class="d-flex ms-auto align-items-center text-white">
+                {{ currentDateTime | date: 'fullDate' }}
             </div>
         </div>
     </div>

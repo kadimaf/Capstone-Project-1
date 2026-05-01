@@ -1,73 +1,21 @@
-// Modern Member Edit Styles
-.member-edit-modern {
-    max-width: 650px;
-    margin: 2.5rem auto;
-    padding: 0 1rem;
+/* NEW: Simple, clean spacing & layout */
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
 }
 
-.edit-card {
-    padding: 2.2rem 2rem 2rem 2rem;
-    border-radius: 18px;
-    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
-    background: #fff;
+form {
+    display: grid;
+    gap: 1rem;
 }
-.edit-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.2rem;
+
+mat-card {
+    padding: 2rem;
+    border-radius: 1rem;
 }
-.edit-header h2 {
-    margin: 0 0 0.2rem 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-.member-id {
-    color: #888;
-    font-size: 1rem;
-    font-weight: 500;
-}
-.status-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.98rem;
-    padding: 0.18em 0.7em;
-    border-radius: 12px;
-    font-weight: 600;
-}
-.status-chip.active {
-    background: #e8f5e9;
-    color: #388e3c;
-}
-.status-chip.inactive {
-    background: #ffebee;
-    color: #c62828;
-}
-.note {
-    font-size: 0.98rem;
-    color: #666;
-    margin-bottom: 1.2rem;
-}
-.edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-.form-row {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-}
-.form-row > * {
-    flex: 1 1 220px;
-}
-.status-toggle-row {
-    justify-content: flex-end;
-    margin-top: -0.5rem;
-}
+
 .button-group {
     display: flex;
-    gap: 1.2rem;
-    margin-top: 1.2rem;
+    justify-content: flex-start;
+    gap: 16px;
 }
