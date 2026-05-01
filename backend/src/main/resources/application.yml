@@ -47,7 +47,7 @@ logging:
 # Stripe Configuration
 # IMPORTANT: Set these environment variables before running:
 # - STRIPE_SECRET_KEY: Your Stripe secret key (sk_test_... or sk_live_.....)
-# - STRIPE_WEBHOOK_SECRET: Your Stripe webhook signing secret (whsec_...)
+# - STRIPE_WEBHOOK_SECRET: Your Stripe webhook signing secret (whsec_......)
 stripe:
   api-key:  ${STRIPE_SECRET_KEY:stripe Key_placeHolder}
   webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
