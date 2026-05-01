@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from '../../../models/Event';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../services/event.service';
+import { AuthService } from '../../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventStatus } from '../../../enums/eventStatus';
 import { EventUpdateDescriptionRequest } from '../../../models/EventUpdateDescriptionRequest';
@@ -25,16 +26,19 @@ export class EventDetailsComponent implements OnInit {
   description: string = '';
   comments: string = '';
   memberId: string = '';
+  isAdmin = false;
 
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
+    private authService: AuthService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
     const eventId = this.route.snapshot.paramMap.get('id');
     // this.getEventDetails();
     if (eventId) {

@@ -1,0 +1,100 @@
+<div class="chat-page">
+    <section class="chat-hero">
+        <h1>CACODEV AI Assistant</h1>
+        <p>Ask questions about the organization, events, members, and more</p>
+    </section>
+
+    <div class="chat-container">
+        <div class="chat-card">
+            <!-- Chat header -->
+            <div class="chat-header">
+                <div class="header-left">
+                    <div class="ai-avatar">
+                        <mat-icon>smart_toy</mat-icon>
+                    </div>
+                    <div>
+                        <h3>AI Assistant</h3>
+                        <span class="status-indicator">
+                            <span class="pulse"></span> Online
+                        </span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <mat-slide-toggle [(ngModel)]="useStreaming" color="primary"
+                                      matTooltip="Toggle streaming responses">
+                        Stream
+                    </mat-slide-toggle>
+                    <button mat-icon-button (click)="clearChat()" matTooltip="Clear conversation"
+                            [disabled]="messages.length === 0">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat body -->
+            <div class="chat-body" #chatBody>
+                <!-- Welcome state -->
+                <div class="welcome-state" *ngIf="messages.length === 0">
+                    <mat-icon class="welcome-icon">psychology</mat-icon>
+                    <h2>How can I help you today?</h2>
+                    <p>Ask me anything about CACODEV</p>
+                    <div class="suggestion-chips">
+                        <button mat-stroked-button class="chip" (click)="userInput = 'What upcoming events are there?'; send()">
+                            <mat-icon>event</mat-icon> Upcoming events
+                        </button>
+                        <button mat-stroked-button class="chip" (click)="userInput = 'How many members do we have?'; send()">
+                            <mat-icon>groups</mat-icon> Member count
+                        </button>
+                        <button mat-stroked-button class="chip" (click)="userInput = 'Tell me about CACODEV'; send()">
+                            <mat-icon>info</mat-icon> About CACODEV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div *ngFor="let msg of messages" class="message-row" [ngClass]="msg.role">
+                    <div class="msg-avatar" *ngIf="msg.role === 'assistant'">
+                        <mat-icon>smart_toy</mat-icon>
+                    </div>
+                    <div class="msg-bubble" [ngClass]="msg.role">
+                        <div class="msg-content" *ngIf="msg.role === 'assistant'" [innerHTML]="msg.content | safeMarkdown"></div>
+                        <div class="msg-content" *ngIf="msg.role === 'user'">{{ msg.content }}</div>
+                        <div class="msg-time">{{ msg.timestamp | date:'shortTime' }}</div>
+                    </div>
+                    <div class="msg-avatar user-avatar" *ngIf="msg.role === 'user'">
+                        <mat-icon>person</mat-icon>
+                    </div>
+                </div>
+
+                <!-- Typing indicator -->
+                <div class="message-row assistant" *ngIf="isLoading && (!useStreaming || messages[messages.length - 1]?.content === '')">
+                    <div class="msg-avatar">
+                        <mat-icon>smart_toy</mat-icon>
+                    </div>
+                    <div class="msg-bubble assistant typing">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat input -->
+            <div class="chat-input">
+                <mat-form-field appearance="outline" class="input-field">
+                    <textarea matInput
+                              [(ngModel)]="userInput"
+                              (keydown)="onKeydown($event)"
+                              placeholder="Type a message..."
+                              rows="1"
+                              [disabled]="isLoading"></textarea>
+                </mat-form-field>
+                <button mat-fab color="primary" class="send-btn"
+                        (click)="send()"
+                        [disabled]="!userInput.trim() || isLoading">
+                    <mat-icon>send</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
