@@ -7,12 +7,14 @@ import com.cacodev.shalom.features.member.dto.MemberTypeUpdateRequest;
 import com.cacodev.shalom.features.member.service.MemberTypeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Member Types", description = "Operations about Member Types")
+@PreAuthorize("hasRole('ADMIN')")
 @RestController
 @RequestMapping("/api/member-types")
 public class MemberTypeController {

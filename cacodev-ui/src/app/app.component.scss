@@ -9,18 +9,15 @@ body {
 .app-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 100vh;
 }
 
 /* The content can grow, but the footer stays at the bottom */
 .main-content {
-    flex: 1;
+    flex: 1 0 auto;
 }
 
-/* Footer will always stick to the bottom */
-footer {
-    background-color: #f8f9fa;
-    /* Optional styling */
-    padding: 10px;
-    text-align: center;
+/* Footer stays at the bottom */
+app-footer {
+    flex-shrink: 0;
 }
