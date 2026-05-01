@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Contribution } from '../../../models/Contribution';
 import { ContributionService } from '../../../services/contribution.service';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddContributionDialogComponent } from '../add-contribution-dialog/add-contribution-dialog.component';
@@ -16,18 +15,17 @@ import { MemberService } from '../../../services/member.service';
   templateUrl: './contribution.component.html',
   styleUrl: './contribution.component.scss'
 })
-export class ContributionComponent implements OnInit, AfterViewInit {
-
+export class ContributionComponent implements AfterViewInit {
+  
+  contributions: Contribution[] = [];
   displayedColumns = ['memberId', 'fullName', 'amount', 'type', 'status', 'date'];
   contributionStatuses = Object.values(ContributionStatus);
   memberNameMap: Map<string, string> = new Map();
-  isLoading = true;
-  searchValue = '';
+  loading: boolean = true;
 
   dataSource = new MatTableDataSource<Contribution>();
 
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private contributionService: ContributionService,
@@ -42,19 +40,11 @@ export class ContributionComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
-  onSearch(value: string): void {
-    this.dataSource.filter = value.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  clearSearch(): void {
-    this.searchValue = '';
-    this.dataSource.filter = '';
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   openAddContributionDialog(): void {
@@ -62,27 +52,25 @@ export class ContributionComponent implements OnInit, AfterViewInit {
       width: '600px',
       disableClose: true,
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'success') {
-        this.fetchContributions();
+        this.fetchContributions(); // reload contributions
       }
     });
   }
 
   fetchContributions(): void {
-    this.isLoading = true;
     this.contributionService.getAllContributions().subscribe({
       next: (data) => {
-        this.dataSource.data = data;
+        // this.contributions = data;
+        this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
         data.forEach(c => this.getMemberFullName(c.memberId));
-        this.isLoading = false;
+        this.loading = false;
       },
       error: (err) => {
         console.error('Error fetching contributions', err);
-        this.isLoading = false;
       }
     });
   }
@@ -90,16 +78,16 @@ export class ContributionComponent implements OnInit, AfterViewInit {
   onStatusChange(id: string, newStatus: ContributionStatus): void {
     this.contributionService.updateContributionStatus(id, newStatus).subscribe({
       next: updated => {
-        const index = this.dataSource.data.findIndex(c => c.id === id);
-        if (index !== -1) {
-          this.dataSource.data[index].status = updated.status;
-        }
+        const index = this.contributions.findIndex(c => c.id === id);
+        if (index !== -1) this.contributions[index].status = updated.status;
 
-        this.snackBar.open(`Status updated to '${updated.status}'`, 'Close', {
-          duration: 5000,
-          verticalPosition: 'top',
+        this.snackBar.open(`Status updated successfully to '${updated.status}'`, 'Close', {
+          duration: 7000, 
+          verticalPosition: 'top', 
           panelClass: ['snackbar-success']
         });
+        
+        console.log(`Status updated successfully to: '${updated.status}'`);
       },
       error: err => console.error('Failed to update status', err)
     });
@@ -107,10 +95,11 @@ export class ContributionComponent implements OnInit, AfterViewInit {
 
   getMemberFullName(memberId: string): void {
     if (this.memberNameMap.has(memberId)) return;
-
+  
     this.memberService.getMemberByMemberId(memberId).subscribe(member => {
       const fullName = `${member.firstName} ${member.lastName}`;
       this.memberNameMap.set(memberId, fullName);
     });
   }
+
 }

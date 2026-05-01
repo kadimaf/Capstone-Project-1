@@ -11,7 +11,6 @@ import com.cacodev.shalom.features.member.mapper.MemberMapper;
 import com.cacodev.shalom.features.member.repository.MemberRepository;
 import com.cacodev.shalom.features.member.repository.MemberTypeRepository;
 import com.cacodev.shalom.utils.MemberIdGenerator;
-import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,42 +32,36 @@ public class MemberService {
         this.memberTypeRepository = memberTypeRepository;
     }
 
-    @Tool(name = "findAllMember", description = "Get all members in the system")
     public List<MemberDTO> findAllMembers() {
         return memberRepository.findAll().stream()
                 .map(memberMapper::memberToMemberDTO)
                 .collect(Collectors.toList());
     }
 
-    @Tool(name = "findActiveMembers", description = "Get all active members in the system")
     public List<MemberDTO> findActiveMembers() {
         return memberRepository.findByActiveTrue().stream()
                 .map(memberMapper::memberToMemberDTO)
                 .collect(Collectors.toList());
     }
 
-    @Tool(name = "findInactiveMembers", description = "Get all inactive members in the system")
     public List<MemberDTO> findInactiveMembers() {
         return memberRepository.findByActiveFalse().stream()
                 .map(memberMapper::memberToMemberDTO)
                 .collect(Collectors.toList());
     }
 
-    @Tool(name = "findExpiredMembership", description = "Get all members with expired memberships in the system")
     public List<MemberDTO> findExpiredMembership() {
         return memberRepository.findExpiredMemberships().stream()
                 .map(memberMapper::memberToMemberDTO)
                 .collect(Collectors.toList());
     }
 
-    @Tool(name = "findByDateOfBirth", description = "Get all members with a specific date of birth in the system")
     public List<MemberDTO> findByDateOfBirth(LocalDate dateOfBirth) {
         return memberRepository.findByDateOfBirth(dateOfBirth).stream()
                 .map(memberMapper::memberToMemberDTO)
                 .collect(Collectors.toList());
     }
 
-    @Tool(name = "findMemberById", description = "Get a member by their ID number")
     public MemberDTO findById(UUID id) {
         return memberRepository.findById(id)
                 .map(memberMapper::memberToMemberDTO)
@@ -77,7 +70,6 @@ public class MemberService {
                 );
     }
 
-    @Tool(name = "findByMemberId", description = "Get a member by their member ID")
     public MemberDTO findByMemberId(String memberId) {
         return memberRepository.findByMemberId(memberId)
                 .map(memberMapper::memberToMemberDTO)
@@ -86,7 +78,6 @@ public class MemberService {
                 );
     }
 
-    @Tool(name = "createMember", description = "Create a new member in the system")
     @Transactional
     public MemberDTO createMember(MemberCreateRequest request) {
 
@@ -117,7 +108,6 @@ public class MemberService {
         return memberMapper.memberToMemberDTO(newMember);
     }
 
-    @Tool(name = "updateMemberPersonalInfo", description = "Update a member's personal information in the system")
     @Transactional
     public MemberDTO updatePersonalInfo(UUID id, MemberUpdatePersonalInfoRequest request) {
         boolean madeUpdatePersonalInfo = false;
@@ -158,8 +148,6 @@ public class MemberService {
         return memberMapper.memberToMemberDTO(member);
     }
 
-    @Tool(name = "enableDisableMember", description = "Enable or disable a member's account in the system")
-    @Transactional
     public MemberDTO enableDisableMember(UUID id) {
         Member member = getMember(id);
         member.setActive(!member.isActive());
@@ -167,7 +155,6 @@ public class MemberService {
         return memberMapper.memberToMemberDTO(member);
     }
 
-    @Tool(name = "findMemberByEmail", description = "Find a member by their email address in the system")
     public MemberDTO findMemberByEmail(String email) {
         return memberRepository.findByEmail(email)
                 .map(memberMapper::memberToMemberDTO)
@@ -176,7 +163,6 @@ public class MemberService {
                 );
     }
 
-    @Tool(name = "deleteMemberById", description = "Delete a member by their ID number from the system")
     @Transactional
     public void deleteById(UUID id) {
         if (!memberRepository.existsById(id)) {
@@ -187,7 +173,6 @@ public class MemberService {
         memberRepository.deleteById(id);
     }
 
-    @Tool(name = "deleteByMemberId", description = "Delete a member by their member ID from the system")
     @Transactional
     public void deleteByMemberId(String memberId) {
         if (!memberRepository.existsByMemberId(memberId)) {

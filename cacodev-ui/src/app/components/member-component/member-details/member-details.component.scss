@@ -1,141 +1,41 @@
-// Modern Member Details Styles
-.member-details-modern {
-    max-width: 700px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+.flex {
+    display: flex;
 }
 
-.header-bar {
-    display: flex;
+.items-center {
     align-items: center;
+}
+
+.gap-4 {
     gap: 1rem;
-    margin-bottom: 1.5rem;
 }
 
-.back-btn {
-    margin-right: 0.5rem;
+.mt-4 {
+    margin-top: 1rem;
 }
 
-.breadcrumb {
-    font-size: 0.95rem;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.breadcrumb a {
-    color: #1976d2;
-    text-decoration: none;
-}
-.breadcrumb .current {
-    color: #222;
-    font-weight: 600;
-}
-.member-id {
+.ml-auto {
     margin-left: auto;
-    font-size: 1rem;
-    color: #888;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.field-row {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.label {
+    width: 140px;
+    /* Adjust based on your label length */
     font-weight: 500;
-}
-
-.loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-}
-
-.member-card {
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    border-radius: 18px;
-    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
-    background: #fff;
-}
-.member-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-.avatar {
-    border-radius: 50%;
-    width: 96px;
-    height: 96px;
-    object-fit: cover;
-    border: 3px solid #e3e3e3;
-}
-.member-info {
-    flex: 1;
-}
-.member-info h2 {
-    margin: 0 0 0.2rem 0;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-.email {
-    color: #666;
-    font-size: 1.05rem;
-    margin-bottom: 0.5rem;
-}
-.status-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.98rem;
-    padding: 0.18em 0.7em;
-    border-radius: 12px;
-    font-weight: 600;
-    margin-top: 0.2rem;
-}
-.status-chip.active {
-    background: #e8f5e9;
-    color: #388e3c;
-}
-.status-chip.inactive {
-    background: #ffebee;
-    color: #c62828;
-}
-.actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-@media (min-width: 600px) {
-    .actions {
-        flex-direction: row;
-    }
-}
-
-.details-tabs {
-    margin-top: 1.5rem;
-}
-.info-grid {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    row-gap: 0.7rem;
-    column-gap: 1.2rem;
-    font-size: 1.08rem;
-    padding: 1.2rem 0.5rem;
-}
-.info-label {
     color: #555;
-    font-weight: 500;
-    text-align: right;
-    padding-right: 0.5rem;
 }
-.info-value {
+
+.value {
+    flex: 1;
+    font-weight: bold;
     color: #222;
-    font-weight: 600;
-    word-break: break-word;
-}
-.activity-placeholder {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #888;
-    font-size: 1.1rem;
-    padding: 2.5rem 0;
-    justify-content: center;
 }

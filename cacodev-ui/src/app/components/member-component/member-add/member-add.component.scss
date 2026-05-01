@@ -1,161 +1,43 @@
-// Header
 .add-member-header {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  padding: 48px 24px;
-  color: white;
-  text-align: center;
-
-  h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0 0 8px;
-  }
-  p {
-    font-size: 1rem;
-    opacity: 0.8;
-    margin: 0;
-  }
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    padding: 50px 20px;
+    color: white;
+    text-align: center;
 }
 
-// Container
-.form-container {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 32px 24px 64px;
-}
-
-.back-btn {
-  margin-bottom: 16px;
-}
-
-// Card
-.add-member-card {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 24px 28px;
-
-  .card-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+.add-member-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    mat-icon {
-      color: white;
-      font-size: 28px;
-      width: 28px;
-      height: 28px;
-    }
-  }
-
-  h2 {
-    margin: 0;
-    font-size: 1.3rem;
-    font-weight: 700;
-  }
-
-  p {
-    margin: 2px 0 0;
-    color: #888;
-    font-size: 0.85rem;
-  }
+    margin-top: 40px;
+    padding: 0 16px;
 }
 
-// Form
-.member-form {
-  padding: 24px 28px;
-}
-
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #3f51b5;
-  margin: 28px 0 16px;
-
-  &:first-of-type {
-    margin-top: 8px;
-  }
-
-  mat-icon {
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 20px;
-
-  mat-form-field {
+.add-member-card {
     width: 100%;
-  }
+    max-width: 600px;
+    padding: 24px;
+    border-radius: 12px;
 }
 
-// Actions
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  padding-top: 24px;
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #333;
 }
 
-.cancel-btn {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.form-field {
+    margin-bottom: 16px;
 }
 
-.submit-btn {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0 24px;
+.full-width {
+    width: 100%;
 }
 
-// Responsive
-@media (max-width: 768px) {
-  .add-member-header {
-    padding: 32px 16px;
-    h1 { font-size: 1.6rem; }
-  }
-
-  .form-container {
-    padding: 20px 12px 48px;
-  }
-
-  .card-header {
-    padding: 20px;
-  }
-
-  .member-form {
-    padding: 20px;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .form-actions {
-    flex-direction: column-reverse;
-
-    button {
-      width: 100%;
-    }
-  }
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
 }

@@ -1,129 +1,75 @@
 <section class="members-list-header">
     <h1>Members List</h1>
-    <p>Manage and view all registered members</p>
+    <p>This is a list of our valued members.</p>
 </section>
 
 <div class="members-container">
-    <!-- Toolbar: search + filter + add button -->
-    <div class="toolbar">
-        <mat-form-field appearance="outline" class="search-field">
-            <mat-label>Search members</mat-label>
-            <input matInput [(ngModel)]="searchValue" (ngModelChange)="onSearch(searchValue)"
-                   (input)="onSearch(searchValue)" placeholder="Name, email, or phone">
-            <mat-icon matPrefix>search</mat-icon>
-            <button *ngIf="searchValue" mat-icon-button matSuffix (click)="clearSearch()" aria-label="Clear">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
+    <!-- <div class="container-fluid">
+        <div class="description">
+            <h3>MEMBERS</h3>
+            <hr>
+            <p>The list of members is displayed below.</p>
+            <p>You can also search members by different criterias.</p>
+        </div>
+    </div>       -->
 
-        <mat-button-toggle-group name="membersFilter" [(ngModel)]="currentFilter" (change)="onFilterChange($event)" class="filter-toggles">
-            <mat-button-toggle value="all">All</mat-button-toggle>
-            <mat-button-toggle value="active">Active</mat-button-toggle>
-            <mat-button-toggle value="inactive">Inactive</mat-button-toggle>
-            <mat-button-toggle value="expired">Expired</mat-button-toggle>
-        </mat-button-toggle-group>
-
-        <button *ngIf="isAdmin" mat-flat-button color="primary" class="add-btn" [routerLink]="'/management/add-member'">
+    
+    <div class="float-right">
+        <button mat-flat-button type="button" [routerLink]="'/management/add-member'">
             <mat-icon>person_add</mat-icon>
             New Member
         </button>
     </div>
-
-    <!-- Member count badge -->
-    <div class="count-badge" *ngIf="!isLoading">
-        <span>{{ dataSource.filteredData.length }} member{{ dataSource.filteredData.length !== 1 ? 's' : '' }} found</span>
+    <div class="toggle-wrapper centered">
+        <mat-button-toggle-group name="membersFilter" [(ngModel)]="currentFilter" (change)="onFilterChange($event)">
+            <mat-button-toggle value="all">All Members</mat-button-toggle>
+            <mat-button-toggle value="active">Active Members</mat-button-toggle>
+            <mat-button-toggle value="inactive">Inactive Members</mat-button-toggle>
+            <mat-button-toggle value="expired">Expired Members</mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
 
-    <!-- Loading spinner -->
-    <div class="loading-wrapper" *ngIf="isLoading">
-        <mat-spinner diameter="48"></mat-spinner>
-    </div>
+    <mat-card class="member-card-header">
+        <div class="member-row">
+            <div class="col"><small>MEMBER ID</small></div>
+            <div class="col"><small>FIRST NAME</small></div>
+            <div class="col"><small>MIDDLE NAME</small></div>
+            <div class="col"><small>LAST NAME</small></div>
+            <div class="col"><small>TYPE</small></div>
+            <div class="col"><small>DATE JOINED</small></div>
+            <div class="col"><small>STATUS</small></div>
+            <div class="col actions"><small>ACTIONS</small></div>
+        </div>
+    </mat-card>
 
-    <!-- Data table -->
-    <div class="table-wrapper" *ngIf="!isLoading">
-        <table mat-table [dataSource]="dataSource" matSort class="members-table">
-
-            <!-- Member ID -->
-            <ng-container matColumnDef="memberId">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Member ID</th>
-                <td mat-cell *matCellDef="let member">{{ member.memberId }}</td>
-            </ng-container>
-
-            <!-- First Name -->
-            <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-                <td mat-cell *matCellDef="let member">{{ member.firstName }}</td>
-            </ng-container>
-
-            <!-- Middle Name -->
-            <ng-container matColumnDef="middleName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Middle Name</th>
-                <td mat-cell *matCellDef="let member">{{ member.middleName }}</td>
-            </ng-container>
-
-            <!-- Last Name -->
-            <ng-container matColumnDef="lastName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
-                <td mat-cell *matCellDef="let member">{{ member.lastName }}</td>
-            </ng-container>
-
-            <!-- Member Type -->
-            <ng-container matColumnDef="memberType">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-                <td mat-cell *matCellDef="let member">
-                    <span class="type-chip">{{ member.memberType.name }}</span>
-                </td>
-            </ng-container>
-
-            <!-- Join Date -->
-            <ng-container matColumnDef="joinDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Joined</th>
-                <td mat-cell *matCellDef="let member">{{ member.joinDate | date:'mediumDate' }}</td>
-            </ng-container>
-
-            <!-- Status -->
-            <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                <td mat-cell *matCellDef="let member">
-                    <mat-slide-toggle [checked]="member.active" [disabled]="togglingMemberIds.has(member.id)"
-                        (change)="toggleEnable(member)">
-                        <span [class]="member.active ? 'status-active' : 'status-inactive'">
-                            {{ member.active ? 'Active' : 'Inactive' }}
-                        </span>
-                    </mat-slide-toggle>
-                </td>
-            </ng-container>
-
-            <!-- Actions -->
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef>Actions</th>
-                <td mat-cell *matCellDef="let member">
-                    <div class="actions">
-                        <button mat-icon-button aria-label="Edit" matTooltip="View / Edit"
-                            (click)="goToDetails(member.id)">
-                            <mat-icon class="blue-color">edit</mat-icon>
-                        </button>
-                        <button mat-icon-button aria-label="Delete" matTooltip="Delete member"
-                            (click)="deleteMember(member.id)">
-                            <mat-icon class="red-color">delete</mat-icon>
-                        </button>
-                    </div>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="member-row"></tr>
-
-            <!-- Empty state -->
-            <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell empty-state" [attr.colspan]="displayedColumns.length">
-                    <mat-icon class="empty-icon">group_off</mat-icon>
-                    <p>No members found</p>
-                    <span *ngIf="searchValue">Try adjusting your search or filter</span>
-                </td>
-            </tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
-    </div>
+    <mat-card *ngFor="let member of filteredMembers" class="member-card">
+        <div class="member-row">
+            <div class="col">{{ member.memberId }}</div>
+            <div class="col">{{ member.firstName }}</div>
+            <div class="col">{{ member.middleName }}</div>
+            <div class="col">{{ member.lastName }}</div>
+            <div class="col">{{ member.memberType.name }}</div>
+            <div class="col">{{ member.joinDate }}</div>
+            <div class="col">
+                <mat-slide-toggle [checked]="member.active" [disabled]="togglingMemberIds.has(member.id)"
+                    (change)="toggleEnable(member)">
+                    {{ member.active ? 'Active' : 'Inactive' }}
+                </mat-slide-toggle>
+            </div>
+            <div class="col actions">
+                <button mat-icon-button aria-label="Edit" matTooltip="Edit Personal Info">
+                    <mat-icon class="blue-color" (click)="goToDetails(member.id)">edit</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Delete" matTooltip="Delete member"
+                    (click)="deleteMember(member.id)">
+                    <mat-icon class="red-color">delete</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="More" aria-label="More">
+                    <mat-icon color="warn"><span class="material-symbols-outlined">
+                            more_horiz
+                        </span></mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card>
 </div>

@@ -1,55 +1,36 @@
 <section class="management-header">
     <h1>Management</h1>
-    <p>Select an area to get started</p>
+    <p>Management of our people is done here.</p>
 </section>
 
-<div class="management-container">
-    <div class="card-grid">
-        <mat-card *ngIf="isAdmin" class="mgmt-card" [routerLink]="'/management/members'">
-            <div class="card-icon members">
-                <mat-icon>groups</mat-icon>
-            </div>
-            <div class="card-body">
-                <h3>Members</h3>
-                <p class="card-desc">View and manage all registered members</p>
-                <span class="card-count" *ngIf="memberCount">{{ memberCount }} member{{ memberCount !== 1 ? 's' : '' }}</span>
-            </div>
-            <mat-icon class="card-arrow">arrow_forward</mat-icon>
-        </mat-card>
+<div class="container">
+    <p></p>
+    <h3>MANAGEMENT</h3>
+    <hr>
 
-        <mat-card *ngIf="isAdmin" class="mgmt-card" [routerLink]="'/management/member-types'">
-            <div class="card-icon types">
-                <mat-icon>category</mat-icon>
-            </div>
-            <div class="card-body">
-                <h3>Member Types</h3>
-                <p class="card-desc">Configure membership categories and fees</p>
-                <span class="card-count" *ngIf="memberTypeCount">{{ memberTypeCount }} type{{ memberTypeCount !== 1 ? 's' : '' }}</span>
-            </div>
-            <mat-icon class="card-arrow">arrow_forward</mat-icon>
-        </mat-card>
+    <p>Welcome to the management page of Cacodev</p>
 
-        <mat-card *ngIf="isAdmin" class="mgmt-card" [routerLink]="'/management/contributions'">
-            <div class="card-icon contributions">
-                <mat-icon>payments</mat-icon>
-            </div>
-            <div class="card-body">
-                <h3>Contributions</h3>
-                <p class="card-desc">Track and manage all member contributions</p>
-                <span class="card-count" *ngIf="contributionCount">{{ contributionCount }} contribution{{ contributionCount !== 1 ? 's' : '' }}</span>
-            </div>
-            <mat-icon class="card-arrow">arrow_forward</mat-icon>
-        </mat-card>
+    <p>Please select an area to get started.</p>
 
-        <mat-card class="mgmt-card" [routerLink]="'/management/users'">
-            <div class="card-icon users">
-                <mat-icon>admin_panel_settings</mat-icon>
-            </div>
-            <div class="card-body">
-                <h3>Users</h3>
-                <p class="card-desc">Manage system users and access control</p>
-            </div>
-            <mat-icon class="card-arrow">arrow_forward</mat-icon>
-        </mat-card>
+    <div class="container-fluid">
+        <div class="card-grid">
+            <mat-card class="big-card" [routerLink]="'/management/members'">
+                <mat-card-title class="card-title">Members</mat-card-title>
+            </mat-card>
+    
+            <mat-card class="big-card" [routerLink]="'/management/member-types'">
+                <mat-card-title class="card-title">Member Types</mat-card-title>
+            </mat-card>
+
+            <mat-card class="big-card" [routerLink]="'/management/contributions'">
+                <mat-card-title class="card-title">Contributions</mat-card-title>
+            </mat-card>
+    
+            <mat-card class="big-card" [routerLink]="'/management/users'">
+                <mat-card-title class="card-title">Users</mat-card-title>
+            </mat-card>
+        </div>
     </div>
+
+
 </div>

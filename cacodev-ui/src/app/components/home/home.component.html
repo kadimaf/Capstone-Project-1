@@ -1,233 +1,44 @@
-<div class="home-page">
+<div class="main-container">
+  <mat-card class="hero-section">
+    <h1 class="hero-title">Welcome to Cacodev - Our Organization</h1>
+    <p class="hero-subtitle">Creating the Future. Empowering communities. Inspiring change.</p>
+    <button mat-raised-button color="primary" routerLink="/management/members">Explore Members</button>
+  </mat-card>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-badge">Congolese Association for Congo Development</span>
-      <h1 class="hero-title">Empowering Communities.<br>Inspiring Change.</h1>
-      <p class="hero-subtitle">
-        We unite Congolese voices to build stronger communities through service,
-        education, and collective action.
-      </p>
-      <div class="hero-buttons">
-        <button mat-raised-button class="hero-btn-primary" routerLink="/about">
-          Learn More <mat-icon>arrow_forward</mat-icon>
-        </button>
-        <button mat-stroked-button class="hero-btn-secondary" routerLink="/donate">
-          <mat-icon>favorite</mat-icon> Support Us
-        </button>
-      </div>
-    </div>
-    <div class="hero-wave">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path d="M0,64 C360,120 720,0 1440,64 L1440,120 L0,120 Z" fill="#fafafa"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- Impact Stats -->
-  <section class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <span class="stat-number">100+</span>
-        <span class="stat-label">Active Members</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-number">50+</span>
-        <span class="stat-label">Events Hosted</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-number">$25K+</span>
-        <span class="stat-label">Raised</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-number">10+</span>
-        <span class="stat-label">Communities</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Snippet -->
   <section class="about-section">
-    <div class="about-inner">
-      <div class="about-text">
-        <span class="section-tag">Who We Are</span>
-        <h2>A Community Built on Purpose</h2>
-        <p>
-          CACODEV brings together Congolese citizens and friends of the Congo to promote
-          development, cultural heritage, and mutual support. We believe that lasting change
-          starts with strong, connected communities.
-        </p>
-        <p>
-          Through education, advocacy, and community service, we empower individuals to be
-          agents of change in their neighborhoods and beyond.
-        </p>
-        <button mat-stroked-button color="primary" routerLink="/about" class="about-btn">
-          More About Us <mat-icon>arrow_forward</mat-icon>
-        </button>
-      </div>
-      <div class="about-visual">
-        <div class="visual-card card-1">
-          <mat-icon>diversity_3</mat-icon>
-          <span>Unity</span>
-        </div>
-        <div class="visual-card card-2">
-          <mat-icon>auto_awesome</mat-icon>
-          <span>Impact</span>
-        </div>
-        <div class="visual-card card-3">
-          <mat-icon>public</mat-icon>
-          <span>Global Reach</span>
-        </div>
-      </div>
-    </div>
+    <h2>About Us</h2>
+    <p>
+      We are a passionate community committed to creating meaningful impact through service,
+      leadership, and innovation. Our goal is to build a better tomorrow by connecting people with purpose.
+    </p>
   </section>
 
-  <!-- What We Do -->
-  <section class="pillars-section">
-    <div class="section-header">
-      <span class="section-tag">What We Do</span>
-      <h2>Our Pillars of Impact</h2>
-      <p>We focus on the areas that matter most to ensure sustainable, meaningful development.</p>
-    </div>
-    <div class="pillars-grid">
-      <mat-card class="pillar-card">
-        <div class="pillar-icon community">
-          <mat-icon>groups</mat-icon>
-        </div>
+  <section class="features-section">
+    <h2>What We Do</h2>
+    <div class="features-grid">
+      <mat-card class="feature-card">
+        <mat-icon>groups</mat-icon>
         <h3>Community Engagement</h3>
-        <p>Building strong relationships and driving positive social impact at the grassroots level.</p>
+        <p>We build strong relationships and drive positive social impact at the grassroots level.</p>
       </mat-card>
-      <mat-card class="pillar-card">
-        <div class="pillar-icon education">
-          <mat-icon>school</mat-icon>
-        </div>
+      <mat-card class="feature-card">
+        <mat-icon>school</mat-icon>
         <h3>Education & Training</h3>
-        <p>Equipping individuals with skills and knowledge for personal and professional growth.</p>
+        <p>We equip individuals with tools and knowledge to thrive in their personal and professional lives.</p>
       </mat-card>
-      <mat-card class="pillar-card">
-        <div class="pillar-icon volunteer">
-          <mat-icon>volunteer_activism</mat-icon>
-        </div>
+      <mat-card class="feature-card">
+        <mat-icon>volunteer_activism</mat-icon>
         <h3>Volunteerism</h3>
-        <p>Giving back through dedicated volunteer work that transforms lives and uplifts communities.</p>
-      </mat-card>
-      <mat-card class="pillar-card">
-        <div class="pillar-icon culture">
-          <mat-icon>theater_comedy</mat-icon>
-        </div>
-        <h3>Cultural Preservation</h3>
-        <p>Celebrating and preserving Congolese heritage through events, arts, and storytelling.</p>
+        <p>We believe in giving back. Join us in making a difference through volunteer work.</p>
       </mat-card>
     </div>
   </section>
 
-  <!-- Events Teaser -->
-  <section class="events-section">
-    <div class="section-header">
-      <span class="section-tag">Stay Connected</span>
-      <h2>Upcoming Events</h2>
-      <p>Join us for workshops, gatherings, and outreach programs throughout the year.</p>
-    </div>
-    <div class="events-grid">
-      <mat-card class="event-card">
-        <div class="event-date">
-          <span class="event-month">MAR</span>
-          <span class="event-day">28</span>
-        </div>
-        <div class="event-info">
-          <h3>Community Gathering</h3>
-          <p>Connect with fellow members and share ideas for upcoming projects.</p>
-          <span class="event-meta"><mat-icon>location_on</mat-icon> Community Center</span>
-        </div>
-      </mat-card>
-      <mat-card class="event-card">
-        <div class="event-date">
-          <span class="event-month">APR</span>
-          <span class="event-day">12</span>
-        </div>
-        <div class="event-info">
-          <h3>Fundraising Gala</h3>
-          <p>An evening of giving back and supporting our mission across the Congo.</p>
-          <span class="event-meta"><mat-icon>location_on</mat-icon> Grand Hall</span>
-        </div>
-      </mat-card>
-      <mat-card class="event-card">
-        <div class="event-date">
-          <span class="event-month">APR</span>
-          <span class="event-day">25</span>
-        </div>
-        <div class="event-info">
-          <h3>Leadership Workshop</h3>
-          <p>Develop leadership skills and learn from experienced community mentors.</p>
-          <span class="event-meta"><mat-icon>location_on</mat-icon> Virtual</span>
-        </div>
-      </mat-card>
-    </div>
-    <div class="section-action">
-      <button mat-stroked-button color="primary" routerLink="/events">
-        View All Events <mat-icon>arrow_forward</mat-icon>
-      </button>
-    </div>
+  <section class="cta-section">
+    <h2>Get Involved</h2>
+    <p>Join hands with us to transform lives and create lasting change.</p>
+    <button mat-stroked-button color="accent" routerLink="/management/add-member">Become a Member</button>
   </section>
 
-  <!-- CTA / Join -->
-  <section class="join-section">
-    <div class="join-inner">
-      <div class="join-text">
-        <h2>Ready to Make a Difference?</h2>
-        <p>Become a member of CACODEV and join a growing network of individuals committed
-           to building a brighter future for the Congo and its people.</p>
-        <div class="join-perks">
-          <div class="perk"><mat-icon>check_circle</mat-icon> Access to exclusive events</div>
-          <div class="perk"><mat-icon>check_circle</mat-icon> Community networking</div>
-          <div class="perk"><mat-icon>check_circle</mat-icon> Leadership opportunities</div>
-          <div class="perk"><mat-icon>check_circle</mat-icon> Make a real impact</div>
-        </div>
-        <button mat-raised-button class="join-btn" routerLink="/management/add-member">
-          <mat-icon>person_add</mat-icon> Become a Member
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Donate Banner -->
-  <section class="donate-banner">
-    <div class="donate-inner">
-      <mat-icon>favorite</mat-icon>
-      <h2>Support Our Mission</h2>
-      <p>Your generous donations help us empower communities and create lasting change across the Congo and beyond.</p>
-      <button mat-raised-button class="donate-btn" routerLink="/donate">
-        Donate Now <mat-icon>arrow_forward</mat-icon>
-      </button>
-    </div>
-  </section>
-
-  <!-- Contact Teaser -->
-  <section class="contact-teaser">
-    <div class="contact-inner">
-      <div class="contact-card">
-        <mat-icon>email</mat-icon>
-        <h3>Get in Touch</h3>
-        <p>Have questions or want to collaborate? We'd love to hear from you.</p>
-        <button mat-stroked-button routerLink="/contact">Contact Us</button>
-      </div>
-      <div class="contact-card">
-        <mat-icon>chat</mat-icon>
-        <h3>AI Assistant</h3>
-        <p>Need quick answers? Chat with our AI assistant for instant help.</p>
-        <button mat-stroked-button routerLink="/chat">Start Chat</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Floating AI Chat Button -->
-  <button mat-fab class="ai-chat-fab" routerLink="/chat" matTooltip="Chat with AI" matTooltipPosition="left">
-    <mat-icon>smart_toy</mat-icon>
-  </button>
 
 </div>
