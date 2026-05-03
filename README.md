@@ -121,7 +121,7 @@ The system integrates modern technologies including **Angular, Spring Boot, SQL 
 TeamName/
 │
 ├── README.md
-├── INSTALL.md
+├── INSTALL.pdf
 │
 ├── DesignDocs/
 │   └── SoftwareDesignDescription.pdf
