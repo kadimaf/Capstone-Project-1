@@ -5,7 +5,9 @@
 - [Overview](#Overview)
 - [Features & Modules](#Features-&-Modules)
 - [Technology Stack](#Technology-Stack)
+- [Project Structure](#Projet-Structure)
 - [Installation & Setup](#Installation-&-Setup)
+- [Documentation](#Documentation)
 - [Contributing](#Contributing)
 - [License](#License)
 
@@ -16,132 +18,171 @@
 *A Non-Profit Organization Management System*
 
 ## **Overview**
-CACODEV is a comprehensive management platform designed to facilitate the operations of the Congolese Association for Congo Development. Built with **Spring Boot** (Backend) and **Angular** (Frontend), the system provides tools to manage activities, memberships, fundraisings, events, meetings, and more.
+CACODEV is a comprehensive, full-stack nonprofit organization management system designed to centralize and streamline operations such as member management, event coordination, financial contributions, and organizational communication.
+
+The platform replaces fragmented manual processes with a **secure, scalable, and user-friendly web-based solution**, enabling real-time access to data, improved workflows, and enhanced transparency.
+
+The system integrates modern technologies including **Angular, Spring Boot, SQL Server, Stripe, and AI-powered assistance** to deliver a unified and intelligent management experience.
 
 ---
 
 ## **Features & Modules**
 
-### **1. Activities**
-Manage and categorize activities within the organization.
-- Activity Domain
-- Activity Domain Category (with images)
-- Activity
-- Activity Registration
+### 1. **Authentication & Access Control**
+- Secure login and registration
+- JWT-based authentication
+- Role-Based Access Control (RBAC)
 
-### **2. Billing**
-Implement **Stripe** for processing **membership contributions**.
+### 2. **Member Management**
+- Add, edit, delete members
+- Track membership status (active/inactive/expired)
+- Manage membership types and roles
 
-### **3. Blogs**
-Manage blog-related content and discussions.
-- Authors
-- Blog Posts
-- Post Comments & Replies
+### 3. **Event Management**
+- Create and manage events
+- Register participants
+- Track event status (Scheduled, Started, Completed, Cancelled)
 
-### **4. Contacts**
-Centralized communication management.
-- Announcements
-- Contact Management
+### 4. **Contributions & Donations**
+- Record contributions (cash, service, items)
+- Secure online donations via Stripe
+- Transaction confirmation and history tracking
 
-### **5. Events**
-Organize and track events.
-- Event Creation
-- Event Locations
-- Event Registration
+### 5. **Payment Processing**
+- Stripe integration for secure payments
+- Checkout session handling
+- Webhook-based payment verification
 
-### **6. Fundraisings**
-Monitor and manage donations.
-- Donations
-- Donor Members & Their Contributions
-- Fundraising Campaigns
+### 6. **AI Assistant**
+- Interactive AI-powered chat interface
+- Real-time responses to user queries
+- Helps with system navigation and data understanding
+- **Chat history management (including delete functionality)**
 
-### **7. Identity & Access Control**
-Manage users and authentication.
-- User Accounts
-- Roles & Permissions
-- User Tokens
-- User Addresses
+### 7. **Dashboard & Analytics**
+- Real-time statistics:
+- - Total Members
+- - Active Members
+- - Contributions
+- - Events
+- Quick navigation and action shortcuts
 
-### **8. Meetings**
-Schedule and document meetings.
-- Meeting Management
-- Attendees Tracking
-- Meeting Minutes & Categories
-- Meeting Motions
+### 8. **Contact System**
+- Built-in contact form for user inquiries
+- Direct communication with administrators
+- Message tracking and support handling
 
-### **9. Memberships**
-Manage members and board roles.
-- Board Members
-- Membership Types
-- Member Contributions
-- Job Roles & Histories
+### 9. **About Section**
+- Organization mission, vision, and values
+- Historical overview and milestones
 
-### **10. Organizations**
-Handle organizational structure.
-- General Organization Information
-- Announcements
-- Documents
-- Locations & Contacts
-- Representatives
-
+### 10. **Donation Module**
+- Simple and secure donation workflow
+- Stripe-powered checkout
+- Immediate confirmation and tracking
 ---
 
 ## **Technology Stack**
 
-### **Backend**: Spring Boot
+### **Backend**: Spring Boot 3.x
 - **Spring Security** – Authentication & Authorization
 - **Spring Data JPA** – Database Management
 - **Spring MVC** – API Development
 - **Stripe API** – Payment Processing
 - **Hibernate** – ORM
+- **RESTful API Architecture**
 
-### **Frontend**: Angular
+### **Frontend**: Angular 19
 - **Angular Material** – UI Components
+- **Bootstrap 5**
 - **RxJS** – Reactive Programming
 - **NgRx** – State Management
 - **Angular Forms** – Form Handling
 
 ### **Database**
-- PostgreSQL / MySQL
+- Microsoft SQL Server
+- JPA/Hibernate ORM Mapping
+
+### ** External Integrations**
+- Stripe API (Payments)
+- OpenAi API (Ai Assistant)
 
 ### **DevOps & Deployment**
+- **Maven** (Build Tool)
+- **Node.js 20+**
 - **Docker** – Containerization
+- **GitHub** (Version Control)
 - **CI/CD Pipelines** – Automated Builds & Deployment
 - **Cloud Hosting** – AWS / Azure / Google Cloud
 
 ---
 
-## **Installation & Setup**
-
-### **1. Backend (Spring Boot)**
-#### Prerequisites:
-- Java 17+
-- Maven
-- PostgreSQL/MySQL
-
-#### Steps:
-```bash
-git clone https://github.com/your-repo/cacodev-backend.git
-cd cacodev-backend
-mvn clean install
-mvn spring-boot:run
-```
-#### Environment Variables:
-```env
-DB_URL=jdbc:postgresql://localhost:5432/cacodev_db
-DB_USERNAME=your_db_user
-DB_PASSWORD=your_db_password
-STRIPE_SECRET_KEY=your_stripe_secret
-JWT_SECRET=your_jwt_secret
-```
+## Project Structure
+TeamName/
+│
+├── README.md
+├── INSTALL.md
+│
+├── DesignDocs/
+│   └── SoftwareDesignDescription.pdf
+│
+├── ImplementationDocs/
+│   ├── ProgrammerManual.pdf
+│   ├── UsersManual.pdf
+│   └── TrainingMaterials.pdf
+│
+├── Src/
+│   ├── backend/
+│   ├── frontend/
+│   └── database/
+│       └── empty_schema.sql
+│
+└── docs/
+    ├── RS-6_TestPlan.pdf
+    ├── RS-7_TestCases.pdf
+    └── RS-8_TestSummary.pdf
+    ├── RS-9_ProgrammerManual.pdf
+    ├── RS-11_FurtherDevelopmentStatement.pdf
+    └── Poster.pptx
 
 ---
 
-### **2. Frontend (Angular)**
-#### Prerequisites:
-- Node.js 18+
-- Angular CLI
+## **Installation & Setup**
+#### **Prerequisites**
+- Java 17 LTS
+- Node.js 20+
+- Apache Maven 3.9+
+- Microsoft SQL Server
+- Stripe API Key
+- OpenAi API Key
 
+---
+### **1. Backend (Spring Boot)**
+#### Steps:
+```bash git clone https://github.com/cacodev/cacodev.git
+cd cacodev/backend
+mvn clean install
+mvn spring-boot:run
+```
+### Baackend Configuration (application.yml)
+```
+#### Environment Variables:
+```env
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:5432;databaseName=cacodev_db
+    username: YOUR_DB_USERNAME
+    password: YOUR_DB_PASSWORD
+
+stripe:
+  secret-key: YOUR_STRIPE_KEY
+
+openai:
+  api-key: YOUR_OPENAI_KEY
+```
+---
+
+### **2. Frontend (Angular)**
 #### Steps:
 ```bash
 git clone https://github.com/your-repo/cacodev-frontend.git
@@ -149,9 +190,22 @@ cd cacodev-frontend
 npm install
 ng serve
 ```
+#### Access Application
 The app should now be running at `http://localhost:4200/`.
 
 ---
+
+## Documentation
+The project includes comprehensive documentation:
+- Software Design Description (SDD)
+- Programmer Manual
+- User Manual
+- Training Materials
+- Test Plan, Test Cases, Test Summary
+These documents enable:
+- Full system understanding
+- Easy onboarding for new developers
+- Complete reproducibility of the system
 
 ## **Contributing**
 1. Fork the repository
@@ -163,9 +217,9 @@ The app should now be running at `http://localhost:4200/`.
 ---
 
 ## **Group Shalom**
-1. David Katembo
-2. Fabrice Kadima
-3. Pemphyle Nzuzi
+1. David Katembo - Frontend Development & UI/UX
+2. Fabrice Kadima - Backend Development & System Integration
+3. Pemphyle Nzuzi - AI Integration, Testing & Documentation
 
 ---
 
@@ -173,5 +227,6 @@ The app should now be running at `http://localhost:4200/`.
 This project is licensed under the **MIT License**.
 
 ---
-- [P445 Project](#P445-Project)
+CACODEV provides a complete, scalable, and intelligent nonprofit management solution, combining modern web technologies with AI capabilities to improve efficiency, transparency, and user experience.
+- [P445 & 446 Project](#P445 & 446-Project)
  ---
