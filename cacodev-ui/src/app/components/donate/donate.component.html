@@ -1,94 +1,214 @@
-<div class="donate-container">
-  <div class="donate-header">
-    <h1>Make a Donation</h1>
-    <p>Support our community with your generous contribution</p>
-  </div>
+<div class="donate-page">
+  <!-- Hero -->
+  <section class="donate-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">
+        <mat-icon class="hero-badge-icon">volunteer_activism</mat-icon>
+        Support CACODEV
+      </span>
+      <h1>Make a Donation</h1>
+      <p>Your generosity fuels change. Every contribution helps us build stronger communities.</p>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,64 C360,120 720,0 1440,64 L1440,120 L0,120 Z" fill="#f5f7fb"/>
+      </svg>
+    </div>
+  </section>
 
-  <mat-card class="donate-card">
-    <mat-card-content>
-      <form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
+  <!-- Impact Highlights -->
+  <section class="impact-strip">
+    <div class="impact-item">
+      <mat-icon>school</mat-icon>
+      <div>
+        <strong>Scholarships</strong>
+        <span>Fund youth education</span>
+      </div>
+    </div>
+    <div class="impact-item">
+      <mat-icon>medical_services</mat-icon>
+      <div>
+        <strong>Health &amp; Relief</strong>
+        <span>Emergency support</span>
+      </div>
+    </div>
+    <div class="impact-item">
+      <mat-icon>groups</mat-icon>
+      <div>
+        <strong>Community</strong>
+        <span>Events &amp; programs</span>
+      </div>
+    </div>
+  </section>
 
-        <!-- Predefined Amounts -->
-        <div class="form-section">
-          <label class="section-label">Select Amount</label>
-          <div class="amount-buttons">
-            <button mat-stroked-button type="button"
-                    *ngFor="let amt of predefinedAmounts"
-                    [class.selected]="selectedAmount === amt"
-                    (click)="selectAmount(amt)">
-              ${{ amt }}
+  <!-- Form Card -->
+  <div class="donate-container">
+    <mat-card class="donate-card">
+      <mat-card-content>
+        <form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
+
+          <!-- Step 1: Amount Selection -->
+          <div class="form-section">
+            <div class="section-header">
+              <div class="section-icon-wrap"><mat-icon>attach_money</mat-icon></div>
+              <div>
+                <label class="section-label">Choose Your Amount</label>
+                <span class="section-hint">Select a preset or enter a custom amount</span>
+              </div>
+            </div>
+            <div class="amount-buttons">
+              <button mat-stroked-button type="button"
+                      *ngFor="let amt of predefinedAmounts"
+                      [class.selected]="selectedAmount === amt"
+                      (click)="selectAmount(amt)">
+                <span class="amt-dollar">$</span>
+                <span class="amt-value">{{ amt }}</span>
+              </button>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width custom-amount-field">
+              <mat-label>Or Enter Custom Amount</mat-label>
+              <span matPrefix>$&nbsp;</span>
+              <input matInput type="number" formControlName="customAmount"
+                     (input)="onCustomAmountChange()" placeholder="0.00">
+            </mat-form-field>
+          </div>
+
+          <mat-divider class="section-divider"></mat-divider>
+
+          <!-- Step 2: Purpose -->
+          <div class="form-section">
+            <div class="section-header">
+              <div class="section-icon-wrap"><mat-icon>category</mat-icon></div>
+              <div>
+                <label class="section-label">Donation Purpose</label>
+                <span class="section-hint">Where would you like your donation to go?</span>
+              </div>
+            </div>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Select Purpose</mat-label>
+              <mat-select formControlName="purpose">
+                <mat-option *ngFor="let purpose of purposes" [value]="purpose">
+                  {{ purpose }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-divider class="section-divider"></mat-divider>
+
+          <!-- Step 3: Donor Info -->
+          <div class="form-section">
+            <div class="section-header">
+              <div class="section-icon-wrap"><mat-icon>person</mat-icon></div>
+              <div>
+                <label class="section-label">Your Information</label>
+                <span class="section-hint">Tell us a little about yourself</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Your Name</mat-label>
+                <mat-icon matPrefix>badge</mat-icon>
+                <input matInput formControlName="donorName" required>
+                <mat-error *ngIf="donationForm.get('donorName')?.hasError('required')">
+                  Name is required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Email Address</mat-label>
+                <mat-icon matPrefix>email</mat-icon>
+                <input matInput type="email" formControlName="donorEmail" required>
+                <mat-error *ngIf="donationForm.get('donorEmail')?.hasError('required')">
+                  Email is required
+                </mat-error>
+                <mat-error *ngIf="donationForm.get('donorEmail')?.hasError('email')">
+                  Please enter a valid email
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="anonymous-toggle">
+              <mat-slide-toggle formControlName="isAnonymous" color="primary">
+                <span class="toggle-label">
+                  <mat-icon class="toggle-icon">visibility_off</mat-icon>
+                  Make this donation anonymous
+                </span>
+              </mat-slide-toggle>
+            </div>
+          </div>
+
+          <!-- Amount Summary -->
+          <div class="amount-display" *ngIf="donationForm.value.amount">
+            <div class="amount-display-inner">
+              <div class="summary-icon-wrap"><mat-icon>receipt_long</mat-icon></div>
+              <div class="summary-details">
+                <span class="amount-label">Your Donation</span>
+                <span class="amount-value">${{ donationForm.value.amount }}</span>
+              </div>
+              <span class="amount-purpose">{{ donationForm.value.purpose }}</span>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="actions">
+            <button mat-raised-button type="submit"
+                    [disabled]="donationForm.invalid || loading" class="donate-button">
+              <mat-icon *ngIf="!loading">favorite</mat-icon>
+              <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+              <span>{{ loading ? 'Processing...' : 'Donate Now' }}</span>
             </button>
           </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-section">
+            <div class="trust-badges">
+              <div class="trust-badge">
+                <div class="trust-icon"><mat-icon>lock</mat-icon></div>
+                <span>Secure Payment</span>
+              </div>
+              <div class="trust-badge">
+                <div class="trust-icon"><mat-icon>verified</mat-icon></div>
+                <span>Verified Nonprofit</span>
+              </div>
+              <div class="trust-badge">
+                <div class="trust-icon"><mat-icon>receipt</mat-icon></div>
+                <span>Tax Deductible</span>
+              </div>
+            </div>
+            <p class="secure-note">
+              <img src="https://img.icons8.com/color/24/stripe.png" alt="Stripe" class="stripe-logo">
+              Powered by Stripe — Safe &amp; Encrypted
+            </p>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Bottom CTA -->
+  <section class="donate-bottom-cta">
+    <div class="cta-inner">
+      <h2>Every Dollar Counts</h2>
+      <p>100% of your donation goes directly to our programs and community initiatives.</p>
+      <div class="cta-stats">
+        <div class="cta-stat">
+          <strong>$50</strong>
+          <span>Feeds a family for a week</span>
         </div>
-
-        <!-- Custom Amount -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Or Enter Custom Amount</mat-label>
-          <span matPrefix>$&nbsp;</span>
-          <input matInput type="number" formControlName="customAmount"
-                 (input)="onCustomAmountChange()" placeholder="Enter amount">
-        </mat-form-field>
-
-        <!-- Purpose -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Donation Purpose</mat-label>
-          <mat-select formControlName="purpose">
-            <mat-option *ngFor="let purpose of purposes" [value]="purpose">
-              {{ purpose }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <!-- Donor Info -->
-        <div class="form-row">
-          <mat-form-field appearance="outline" class="half-width">
-            <mat-label>Your Name</mat-label>
-            <input matInput formControlName="donorName" required>
-            <mat-error *ngIf="donationForm.get('donorName')?.hasError('required')">
-              Name is required
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="half-width">
-            <mat-label>Email Address</mat-label>
-            <input matInput type="email" formControlName="donorEmail" required>
-            <mat-error *ngIf="donationForm.get('donorEmail')?.hasError('required')">
-              Email is required
-            </mat-error>
-            <mat-error *ngIf="donationForm.get('donorEmail')?.hasError('email')">
-              Please enter a valid email
-            </mat-error>
-          </mat-form-field>
+        <div class="cta-stat">
+          <strong>$100</strong>
+          <span>Supplies school materials</span>
         </div>
-
-        <!-- Anonymous Toggle -->
-        <div class="anonymous-toggle">
-          <mat-slide-toggle formControlName="isAnonymous">
-            Make this donation anonymous
-          </mat-slide-toggle>
+        <div class="cta-stat">
+          <strong>$250</strong>
+          <span>Sponsors a youth program</span>
         </div>
-
-        <!-- Amount Display -->
-        <div class="amount-display" *ngIf="donationForm.value.amount">
-          <span class="amount-label">Donation Amount:</span>
-          <span class="amount-value">${{ donationForm.value.amount }}</span>
-        </div>
-
-        <!-- Submit -->
-        <div class="actions">
-          <button mat-raised-button color="primary" type="submit"
-                  [disabled]="donationForm.invalid || loading" class="donate-button">
-            <mat-icon *ngIf="!loading">payment</mat-icon>
-            <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
-            <span>{{ loading ? 'Processing...' : 'Donate Now' }}</span>
-          </button>
-        </div>
-
-        <p class="secure-note">
-          <mat-icon>lock</mat-icon>
-          Secure payment powered by Stripe
-        </p>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      </div>
+    </div>
+  </section>
 </div>

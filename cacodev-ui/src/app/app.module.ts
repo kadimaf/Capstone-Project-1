@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SafeMarkdownPipe } from './pipes/safe-markdown.pipe';
 import { MemberComponent } from './components/member-component/member/member.component';
 
 import { ReactiveFormsModule  } from '@angular/forms';
@@ -25,6 +26,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule  } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDividerModule  } from '@angular/material/divider';
 import { MatAutocompleteModule  } from '@angular/material/autocomplete';
 
@@ -39,6 +41,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MemberTypeComponent } from './components/member-type-component/member-type/member-type.component';
 import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 import { MemberDetailsComponent } from './components/member-component/member-details/member-details.component';
 import { MemberEditComponent } from './components/member-component/member-edit/member-edit.component';
 import { MemberAddComponent } from './components/member-component/member-add/member-add.component';
@@ -50,6 +53,9 @@ import { AddParticipantDialogComponent } from './components/events/add-participa
 import { DonateComponent } from './components/donate/donate.component';
 import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
 import { PaymentCancelComponent } from './components/payment/payment-cancel/payment-cancel.component';
+import { LoginComponent } from './components/login/login.component';
+import { AiChatComponent } from './components/ai-chat/ai-chat.component';
+import { authInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,6 +72,7 @@ import { PaymentCancelComponent } from './components/payment/payment-cancel/paym
     FooterComponent,
     MemberTypeComponent,
     UserComponent,
+    UserDetailComponent,
     MemberDetailsComponent,
     MemberEditComponent,
     MemberAddComponent,
@@ -76,7 +83,10 @@ import { PaymentCancelComponent } from './components/payment/payment-cancel/paym
     AddParticipantDialogComponent,
     DonateComponent,
     PaymentSuccessComponent,
-    PaymentCancelComponent
+    PaymentCancelComponent,
+    LoginComponent,
+    AiChatComponent,
+    SafeMarkdownPipe
   ],
   imports: [
     BrowserModule,
@@ -100,12 +110,13 @@ import { PaymentCancelComponent } from './components/payment/payment-cancel/paym
     MatButtonToggleModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
     MatDividerModule,
     MatAutocompleteModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

@@ -7,9 +7,13 @@ import com.cacodev.shalom.features.member.domain.MemberRole;
 import com.cacodev.shalom.features.member.domain.MemberType;
 import com.cacodev.shalom.features.member.repository.MemberRepository;
 import com.cacodev.shalom.features.member.repository.MemberTypeRepository;
+import com.cacodev.shalom.features.user.Role;
+import com.cacodev.shalom.features.user.User;
+import com.cacodev.shalom.features.user.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +26,15 @@ public class DataInitializer implements CommandLineRunner {
 
     private final MemberTypeRepository memberTypeRepository;
     private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DataInitializer(MemberTypeRepository memberTypeRepository, MemberRepository memberRepository) {
+    public DataInitializer(MemberTypeRepository memberTypeRepository, MemberRepository memberRepository,
+                           UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.memberTypeRepository = memberTypeRepository;
         this.memberRepository = memberRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -97,6 +106,43 @@ public class DataInitializer implements CommandLineRunner {
             member3.setMembershipExpiryDate(LocalDate.parse("2090-12-12"));
             memberRepository.save(member3);
             log.info("## ## - Added member: '{} {}'", member3.getFirstName(), member3.getLastName());
+        }
+
+        if (userRepository.count() == 0 && memberRepository.count() > 0) {
+            String defaultPassword = passwordEncoder.encode("P@ssw0rd");
+
+            memberRepository.findByMemberId("MBR00001").ifPresent(m -> {
+                User user = new User();
+                user.setUsername("pemphyle");
+                user.setEmail(m.getEmail());
+                user.setPassword(defaultPassword);
+                user.setRole(Role.ADMIN);
+                user.setMember(m);
+                userRepository.save(user);
+                log.info("## ## - Added user: '{}' for member '{} {}'", user.getUsername(), m.getFirstName(), m.getLastName());
+            });
+
+            memberRepository.findByMemberId("MBR00002").ifPresent(m -> {
+                User user = new User();
+                user.setUsername("david");
+                user.setEmail(m.getEmail());
+                user.setPassword(defaultPassword);
+                user.setRole(Role.ADMIN);
+                user.setMember(m);
+                userRepository.save(user);
+                log.info("## ## - Added user: '{}' for member '{} {}'", user.getUsername(), m.getFirstName(), m.getLastName());
+            });
+
+            memberRepository.findByMemberId("MBR00003").ifPresent(m -> {
+                User user = new User();
+                user.setUsername("fabrice");
+                user.setEmail(m.getEmail());
+                user.setPassword(defaultPassword);
+                user.setRole(Role.ADMIN);
+                user.setMember(m);
+                userRepository.save(user);
+                log.info("## ## - Added user: '{}' for member '{} {}'", user.getUsername(), m.getFirstName(), m.getLastName());
+            });
         }
     }
 }

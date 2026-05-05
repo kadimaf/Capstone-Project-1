@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AddEventDialogComponent } from '../events/add-event-dialog/add-event-dialog.component';
 import { EventService } from '../../services/event.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { Event } from '../../models/Event';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,14 +15,17 @@ import { MatDialog } from '@angular/material/dialog';
 export class EventComponent {
 
   events: Event[] = [];
+  isAdmin = false;
 
   constructor(
     private eventService: EventService,
+    private authService: AuthService,
     private router: Router,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
     this.loadEvents();
   }
 
