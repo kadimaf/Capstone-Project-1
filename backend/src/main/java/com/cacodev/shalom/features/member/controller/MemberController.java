@@ -6,6 +6,7 @@ import com.cacodev.shalom.features.member.dto.MemberUpdatePersonalInfoRequest;
 import com.cacodev.shalom.features.member.service.MemberService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Members", description = "Operations about Members")
+@PreAuthorize("hasRole('ADMIN')")
 @RestController
 @RequestMapping("/api/members")
 public class MemberController {
