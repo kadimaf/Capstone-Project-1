@@ -9,6 +9,7 @@ import { AboutComponent } from './components/about/about.component';
 import { MemberComponent } from './components/member-component/member/member.component';
 import { MemberTypeComponent } from './components/member-type-component/member-type/member-type.component';
 import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 import { MemberDetailsComponent } from './components/member-component/member-details/member-details.component';
 import { MemberEditComponent } from './components/member-component/member-edit/member-edit.component';
 import { MemberAddComponent } from './components/member-component/member-add/member-add.component';
@@ -18,6 +19,10 @@ import { EventDetailsComponent } from './components/events/event-details/event-d
 import { DonateComponent } from './components/donate/donate.component';
 import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
 import { PaymentCancelComponent } from './components/payment/payment-cancel/payment-cancel.component';
+import { LoginComponent } from './components/login/login.component';
+import { AiChatComponent } from './components/ai-chat/ai-chat.component';
+import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -25,8 +30,13 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'events',
@@ -38,39 +48,53 @@ const routes: Routes = [
   },
   {
     path: 'management',
-    component: ManagementComponent
+    component: ManagementComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'management/members',
-    component: MemberComponent
+    component: MemberComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'management/members/:id',
-    component: MemberDetailsComponent
+    component: MemberDetailsComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'management/members/:id/edit',
-    component: MemberEditComponent
+    component: MemberEditComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'management/add-member',
-    component: MemberAddComponent
+    component: MemberAddComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'management/member-types',
-    component: MemberTypeComponent
+    component: MemberTypeComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'management/add-member-type',
-    component: AddMemberTypeComponent
+    component: AddMemberTypeComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'management/contributions',
-    component: ContributionComponent
+    component: ContributionComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'management/users',
-    component: UserComponent
+    component: UserComponent,
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'management/users/:id',
+    component: UserDetailComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'contact',
@@ -91,6 +115,11 @@ const routes: Routes = [
   {
     path: 'payment/cancel',
     component: PaymentCancelComponent
+  },
+  {
+    path: 'chat',
+    component: AiChatComponent,
+    canActivate: [authGuard]
   },
 ];
 

@@ -1,92 +1,141 @@
 <section class="add-member-header">
     <h1>Add New Member</h1>
-    <p>Fill out the form to register a new member</p>
+    <p>Fill out the form below to register a new member to the organization</p>
 </section>
 
-<div class="main-container">
-    <h3>Add Member</h3>
-    <hr>
+<div class="form-container">
+    <button mat-button color="primary" class="back-btn" (click)="onCancel()">
+        <mat-icon>arrow_back</mat-icon> Back to Members
+    </button>
 
-    <p>Please fill out this form to register/add a new member.</p>
+    <mat-card class="add-member-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <mat-icon>person_add</mat-icon>
+            </div>
+            <div>
+                <h2>New Member Registration</h2>
+                <p>All fields marked are required</p>
+            </div>
+        </div>
 
-    <div class="add-member-container">
-        <mat-card class="add-member-card">
-            <h4 class="form-title">Add New Member</h4>
-            <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>First Name</mat-label>
-                        <input matInput formControlName="firstName" />
-                    </mat-form-field>
-                </div>
+        <mat-divider></mat-divider>
 
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Middle Name</mat-label>
-                        <input matInput formControlName="middleName" />
-                    </mat-form-field>
-                </div>
+        <form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="member-form">
+            <!-- Personal Info Section -->
+            <h3 class="section-title">
+                <mat-icon>badge</mat-icon> Personal Information
+            </h3>
 
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Last Name</mat-label>
-                        <input matInput formControlName="lastName" />
-                    </mat-form-field>
-                </div>
+            <div class="form-grid">
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName" placeholder="Enter first name">
+                    <mat-icon matPrefix>person</mat-icon>
+                    <mat-error *ngIf="memberForm.get('firstName')?.hasError('required')">
+                        First name is required
+                    </mat-error>
+                </mat-form-field>
 
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Email</mat-label>
-                        <input matInput formControlName="email" type="email" />
-                    </mat-form-field>
-                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Middle Name</mat-label>
+                    <input matInput formControlName="middleName" placeholder="Enter middle name">
+                    <mat-icon matPrefix>person</mat-icon>
+                    <mat-error *ngIf="memberForm.get('middleName')?.hasError('required')">
+                        Middle name is required
+                    </mat-error>
+                </mat-form-field>
 
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Phone Number</mat-label>
-                        <input matInput formControlName="phoneNumber" />
-                    </mat-form-field>
-                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" placeholder="Enter last name">
+                    <mat-icon matPrefix>person</mat-icon>
+                    <mat-error *ngIf="memberForm.get('lastName')?.hasError('required')">
+                        Last name is required
+                    </mat-error>
+                </mat-form-field>
 
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Gender</mat-label>
-                        <mat-select formControlName="gender">
-                            <mat-option value="MALE">Male</mat-option>
-                            <mat-option value="FEMALE">Female</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender" placeholder="Select gender">
+                        <mat-option value="MALE">Male</mat-option>
+                        <mat-option value="FEMALE">Female</mat-option>
+                    </mat-select>
+                    <mat-icon matPrefix>wc</mat-icon>
+                    <mat-error *ngIf="memberForm.get('gender')?.hasError('required')">
+                        Gender is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
 
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Date of Birth</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" />
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </div>
+            <!-- Contact Section -->
+            <h3 class="section-title">
+                <mat-icon>contact_mail</mat-icon> Contact Details
+            </h3>
 
-                <div class="form-field">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Member Type</mat-label>
-                        <mat-select formControlName="memberTypeId">
-                            <mat-option *ngFor="let type of memberTypes" [value]="type.id">
-                                {{ type.name }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
+            <div class="form-grid">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput formControlName="email" type="email" placeholder="name@example.com">
+                    <mat-icon matPrefix>email</mat-icon>
+                    <mat-error *ngIf="memberForm.get('email')?.hasError('required')">
+                        Email is required
+                    </mat-error>
+                </mat-form-field>
 
-                <div class="button-group">
-                    <button mat-stroked-button color="warn" type="button" (click)="onCancel()">Cancel</button>
-                    <button mat-raised-button color="primary" type="submit" [disabled]="memberForm.invalid">
-                        Add Member
-                    </button>
-                </div>
-            </form>
-        </mat-card>
-    </div>
-    <br>
-    <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="phoneNumber" placeholder="+1 (555) 000-0000">
+                    <mat-icon matPrefix>phone</mat-icon>
+                    <mat-error *ngIf="memberForm.get('phoneNumber')?.hasError('required')">
+                        Phone number is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Membership Section -->
+            <h3 class="section-title">
+                <mat-icon>card_membership</mat-icon> Membership Details
+            </h3>
+
+            <div class="form-grid">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" placeholder="Select date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-icon matPrefix>cake</mat-icon>
+                    <mat-error *ngIf="memberForm.get('dateOfBirth')?.hasError('required')">
+                        Date of birth is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Member Type</mat-label>
+                    <mat-select formControlName="memberTypeId" placeholder="Select type">
+                        <mat-option *ngFor="let type of memberTypes" [value]="type.id">
+                            {{ type.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-icon matPrefix>category</mat-icon>
+                    <mat-error *ngIf="memberForm.get('memberTypeId')?.hasError('required')">
+                        Member type is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <!-- Actions -->
+            <div class="form-actions">
+                <button mat-stroked-button type="button" (click)="onCancel()" class="cancel-btn">
+                    <mat-icon>close</mat-icon> Cancel
+                </button>
+                <button mat-raised-button color="primary" type="submit"
+                        [disabled]="memberForm.invalid" class="submit-btn">
+                    <mat-icon>person_add</mat-icon> Add Member
+                </button>
+            </div>
+        </form>
+    </mat-card>
 </div>
